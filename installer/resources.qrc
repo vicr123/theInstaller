@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon.svg</file>
+        <file>icon-bp.svg</file>
+        <file>background.svg</file>
+        <file>translations/vi_VN.qm</file>
+    </qresource>
+</RCC>
