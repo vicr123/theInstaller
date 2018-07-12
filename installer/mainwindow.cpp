@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setFixedSize(this->size());
     backgroundImage = QIcon(":/background.svg").pixmap(this->size());
 
+    taskbarButton = new QWinTaskbarButton(this);
+
     //ui->appIcon->setPixmap(QIcon(":/icon.svg").pixmap(128, 128));
     ui->installButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_VistaShield));
     ui->installButton_2->setIcon(QApplication::style()->standardIcon(QStyle::SP_VistaShield));
@@ -111,6 +113,8 @@ void MainWindow::on_installButton_clicked()
     this->setWindowFlag(Qt::WindowCloseButtonHint, false);
     this->show();
 
+    taskbarButton->progress()->reset();
+    taskbarButton->progress()->setRange(0, 0);
     ui->stack->setCurrentIndex(4);
     ui->statusLabel->setText(tr("Getting ready to install %1...").arg(metadata.value("name").toString()));
 
@@ -137,16 +141,29 @@ void MainWindow::on_installButton_clicked()
                 } else if (parts.at(0) == "PROGRESS") {
                     ui->installProgress->setMaximum(parts.at(2).toLongLong());
                     ui->installProgress->setValue(parts.at(1).toLongLong());
+
+                    taskbarButton->progress()->setMaximum(parts.at(2).toLongLong());
+                    taskbarButton->progress()->setValue(parts.at(1).toLongLong());
                 } else if (parts.at(0) == "DEBUG") {
                     parts.takeFirst();
                     qDebug() << parts.join(" ");
+                } else if (parts.at(0) == "COMPLETE") {
+                    installDone = true;
+                    this->setWindowFlag(Qt::WindowCloseButtonHint, true);
+                    this->show();
+                    ui->stack->setCurrentIndex(5);
+
+                    taskbarButton->progress()->setVisible(false);
                 }
             }
         });
         connect(sock, &QLocalSocket::disconnected, [=] {
-            this->setWindowFlag(Qt::WindowCloseButtonHint, true);
-            this->show();
-            ui->stack->setCurrentIndex(6);
+            if (!installDone) {
+                this->setWindowFlag(Qt::WindowCloseButtonHint, true);
+                this->show();
+                ui->stack->setCurrentIndex(6);
+                taskbarButton->progress()->stop();
+            }
         });
 
         socketServer->close();
@@ -170,9 +187,11 @@ void MainWindow::on_installButton_clicked()
         if (ui->stableStream->isChecked()) {
             args.append("\"--stable\"");
             args.append("\"--url " + metadata.value("stable").toObject().value("packageUrl").toString() + "\"");
+            args.append("\"--executable " + metadata.value("stable").toObject().value("executableName").toString() + "\"");
         } else {
             args.append("\"--blueprint\"");
             args.append("\"--url " + metadata.value("blueprint").toObject().value("packageUrl").toString() + "\"");
+            args.append("\"--executable " + metadata.value("blueprint").toObject().value("executableName").toString() + "\"");
         }
 
         if (ui->installEveryone->isChecked()) {
@@ -199,13 +218,12 @@ void MainWindow::on_installButton_clicked()
         connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), [=](int exitCode, QProcess::ExitStatus exitStatus) {
             this->setWindowFlag(Qt::WindowCloseButtonHint, true);
             this->show();
-            if (!socketServer->isListening()) {
+            if (socketServer->isListening()) {
                 socketServer->close();
                 socketServer->deleteLater();
 
-                ui->stack->setCurrentIndex(5);
-            } else {
                 ui->stack->setCurrentIndex(6);
+                taskbarButton->progress()->stop();
             }
             proc->deleteLater();
         });
@@ -225,4 +243,27 @@ void MainWindow::on_exitButton_clicked()
 void MainWindow::on_retryInstallButton_clicked()
 {
     getInstallerMetadata();
+}
+
+void MainWindow::on_finishButton_clicked()
+{
+    if (ui->openCheckbox->isChecked()) {
+        QString destdir = ui->installPathLineEdit->text();
+        if (!destdir.endsWith("\\")) {
+            destdir.append("\\");
+        }
+        QString executable;
+        if (ui->stableStream->isChecked()) {
+            executable = metadata.value("stable").toObject().value("executableName").toString();
+        } else {
+            executable = metadata.value("blueprint").toObject().value("executableName").toString();
+        }
+        QProcess::startDetached(destdir + executable);
+    }
+    this->close();
+}
+
+void MainWindow::showEvent(QShowEvent *event) {
+    taskbarButton->setWindow(this->windowHandle());
+    taskbarButton->progress()->setVisible(true);
 }

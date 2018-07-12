@@ -12,6 +12,11 @@
 #include <QNetworkReply>
 #include <QTemporaryFile>
 #include <QTemporaryDir>
+#include <QStandardPaths>
+#include <QJsonDocument>
+#include <QJsonObject>
+
+#include <quazip/JlCompress.h>
 
 #include <iostream>
 

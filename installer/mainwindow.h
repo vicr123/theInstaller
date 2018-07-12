@@ -17,6 +17,9 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QMessageBox>
+#include <QWinTaskbarProgress>
+#include <QWinTaskbarButton>
+#include <QShowEvent>
 
 #include <windows.h>
 #include <shellapi.h>
@@ -54,14 +57,19 @@ private slots:
 
     void on_retryInstallButton_clicked();
 
+    void on_finishButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     void paintEvent(QPaintEvent* event);
+    void showEvent(QShowEvent* event);
 
     QNetworkAccessManager mgr;
     QPixmap backgroundImage;
     QJsonObject metadata;
+    QWinTaskbarButton* taskbarButton;
+    bool installDone = false;
 };
 
 #endif // MAINWINDOW_H

@@ -4,8 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network svg
+QT       += core gui network svg winextras
 CONFIG   += static
+
+INCLUDEPATH += "C:/Program Files (x86)/zlib/include"
+LIBS     += -L"C:/Program Files (x86)/zlib/lib" -lzlibstat
+DEFINES += QUAZIP_STATIC ZLIB_WINAPI
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,15 +34,158 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     fadestackedwidget.cpp \
-    process/installworker.cpp
+    process/installworker.cpp \
+    quazip/quazipfile.cpp \
+    process/installworker.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    process/installworker.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    quazip/unzip.c \
+    quazip/zip.c \
+    process/installworker.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    quazip/unzip.c \
+    quazip/zip.c \
+    process/installworker.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    quazip/quazipfileinfo.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    quazip/unzip.c \
+    quazip/zip.c \
+    process/installworker.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    quazip/quazipfileinfo.cpp \
+    quazip/quazipnewinfo.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    quazip/unzip.c \
+    quazip/zip.c \
+    process/installworker.cpp \
+    quazip/qioapi.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    quazip/quazipfileinfo.cpp \
+    quazip/quazipnewinfo.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    quazip/unzip.c \
+    quazip/zip.c \
+    process/installworker.cpp \
+    quazip/JlCompress.cpp \
+    quazip/qioapi.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipfile.cpp \
+    quazip/quazipfileinfo.cpp \
+    quazip/quazipnewinfo.cpp \
+    fadestackedwidget.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    quazip/unzip.c \
+    quazip/zip.c \
+    maintainwindow.cpp \
+    process/removeworker.cpp
 
 HEADERS += \
         mainwindow.h \
     fadestackedwidget.h \
-    process/installworker.h
+    process/installworker.h \
+    quazip/quazipfile.h \
+    quazip/quazip_global.h \
+    process/installworker.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    process/installworker.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    quazip/unzip.h \
+    quazip/zip.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    process/installworker.h \
+    quazip/ioapi.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    quazip/unzip.h \
+    quazip/zip.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    process/installworker.h \
+    quazip/ioapi.h \
+    quazip/minizip_crypt.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    quazip/quazipfileinfo.h \
+    quazip/unzip.h \
+    quazip/zip.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    process/installworker.h \
+    quazip/ioapi.h \
+    quazip/minizip_crypt.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    quazip/quazipfileinfo.h \
+    quazip/quazipnewinfo.h \
+    quazip/unzip.h \
+    quazip/zip.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    process/installworker.h \
+    quazip/ioapi.h \
+    quazip/minizip_crypt.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    quazip/quazipfileinfo.h \
+    quazip/quazipnewinfo.h \
+    quazip/unzip.h \
+    quazip/zip.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    process/installworker.h \
+    quazip/ioapi.h \
+    quazip/JlCompress.h \
+    quazip/minizip_crypt.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipfile.h \
+    quazip/quazipfileinfo.h \
+    quazip/quazipnewinfo.h \
+    quazip/unzip.h \
+    quazip/zip.h \
+    fadestackedwidget.h \
+    mainwindow.h \
+    maintainwindow.h \
+    process/removeworker.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    maintainwindow.ui
 
 TRANSLATIONS += \
     translations/vi_VN.ts
