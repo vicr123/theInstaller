@@ -15,6 +15,11 @@
 #include <QWinTaskbarProgress>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QDir>
+#include <QDirIterator>
+
+#include <Windows.h>
+#include <Psapi.h>
 
 namespace Ui {
 class MaintainWindow;

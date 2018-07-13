@@ -189,7 +189,11 @@ FORMS += \
 
 TRANSLATIONS += \
     translations/vi_VN.ts \
-    translations/pt_BR.ts
+    translations/pt_BR.ts \
+    translations/en_US.ts \
+    translations/en_GB.ts \
+    translations/en_AU.ts \
+    translations/en_NZ.ts
 
 win32 {
     #CONFIG += embed_manifest_exe

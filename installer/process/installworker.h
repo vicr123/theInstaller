@@ -17,6 +17,7 @@
 #include <QJsonObject>
 #include <QUuid>
 #include <QSettings>
+#include <QTimer>
 
 #include <quazip/JlCompress.h>
 
@@ -37,6 +38,10 @@ private:
     QNetworkAccessManager mgr;
     QTemporaryFile packageFile;
     QTemporaryDir packageTemporaryDir;
+
+    int lastBytesReceived;
+    QDateTime lastTimeUpdate;
+    bool emitStatus = true;
 };
 
 #endif // INSTALLWORKER_H

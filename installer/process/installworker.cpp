@@ -1,5 +1,7 @@
 #include "installworker.h"
 
+extern QString calculateSize(quint64 size);
+
 InstallWorker::InstallWorker(QObject *parent) : QObject(parent)
 {
 }
@@ -63,13 +65,25 @@ bool InstallWorker::startWork() {
     sock->write(QString("STATUS ").append(tr("Downloading %1...").arg(name)).append("\n").toUtf8());
     sock->write(QString("DEBUG %1").arg(packageFile.fileName()).toUtf8());
 
+    QTimer* flipper = new QTimer();
+    flipper->setInterval(5000);
+    connect(flipper, &QTimer::timeout, [=] {
+        emitStatus = !emitStatus;
+    });
+    flipper->start();
+
     QNetworkRequest req(QUrl((QString) url));
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     req.setHeader(QNetworkRequest::UserAgentHeader, "theInstaller/1.0");
     QNetworkReply* reply = mgr.get(req);
+
+    lastBytesReceived = 0;
+    lastTimeUpdate = QDateTime::fromMSecsSinceEpoch(0);
     connect(reply, &QNetworkReply::finished, [=] {
         packageFile.flush();
         packageFile.seek(0);
+
+        flipper->stop();
 
         sock->write(QString("STATUS ").append(tr("Unpacking %1...").arg(name)).append("\n").toUtf8());
         sock->write("PROGRESS 0 0\n");
@@ -78,7 +92,12 @@ bool InstallWorker::startWork() {
         QDir::root().mkpath(destPath);
         QDir dest(destPath);
 
-        JlCompress::extractDir(packageFile.fileName(), destPath);
+        QStringList extracted = JlCompress::extractDir(packageFile.fileName(), destPath);
+        if (extracted.length() == 0) {
+            //Error occurred
+            QApplication::exit(1);
+            return;
+        }
 
         sock->write(QString("STATUS ").append(tr("Configuring %1...").arg(name)).append("\n").toUtf8());
 
@@ -158,6 +177,42 @@ bool InstallWorker::startWork() {
     });
     connect(reply, &QNetworkReply::downloadProgress, [=](qint64 bytesReceived, qint64 bytesTotal) {
         sock->write(QString("PROGRESS %1 %2\n").arg(QString::number(bytesReceived), QString::number(bytesTotal)).toUtf8());
+
+        if (lastTimeUpdate.toMSecsSinceEpoch() == 0) lastTimeUpdate = QDateTime::currentDateTimeUtc();
+
+        if (emitStatus) {
+            sock->write(QString("STATUS ").append(tr("Downloading %1...").arg(name)).append("\n").toUtf8());
+        } else {
+            QDateTime current = QDateTime::currentDateTimeUtc();
+
+            float speed = (float) bytesReceived / (float) (current.toSecsSinceEpoch() - lastTimeUpdate.toSecsSinceEpoch()); //bytes per second
+
+            qint64 bytesToGo = bytesTotal - bytesReceived;
+            int secondsToGo = bytesToGo / speed;
+
+            QString downloaded = tr("%1 of %2").arg(calculateSize(bytesReceived), calculateSize(bytesTotal));
+            QString currentSpeed = calculateSize(speed) + "/s";
+            QString remainingTime;
+
+            int minutes = secondsToGo / 60;
+            int seconds = secondsToGo % 60;
+            int hours = minutes / 60;
+            minutes = minutes % 60;
+            int days = hours / 24;
+            hours = hours % 24;
+
+            if (days > 0) {
+                remainingTime = tr("%n days remaining", nullptr, days);
+            } else if (hours > 0) {
+                remainingTime = tr("%n hours remaining", nullptr, hours);
+            } else if (minutes > 0) {
+                remainingTime = tr("%n minutes remaining", nullptr, minutes);
+            } else {
+                remainingTime = tr("%n seconds remaining", nullptr, seconds);
+            }
+
+            sock->write(QString("STATUS ").append(downloaded + " - " + currentSpeed + " - " + remainingTime).append("\n").toUtf8());
+        }
     });
 
     return true;

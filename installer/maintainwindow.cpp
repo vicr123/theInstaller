@@ -48,6 +48,49 @@ void MaintainWindow::paintEvent(QPaintEvent *event) {
 
 void MaintainWindow::on_uninstallButton_clicked()
 {
+    //Check for executables inside destination directory
+    QDir destdir(metadata.value("installPath").toString());
+    QStringList executableNames;
+    QDirIterator iterator(destdir, QDirIterator::Subdirectories);
+    while (iterator.hasNext()) {
+        iterator.next();
+        QFileInfo executable = iterator.fileInfo();
+        if (executable.suffix() == "exe") {
+            executableNames.append(executable.filePath());
+        }
+    }
+
+    //Check app isn't running
+    bool isOpen = false;
+
+    DWORD processes[1024], needed;
+    EnumProcesses(processes, sizeof(processes), &needed);
+    DWORD count = needed / sizeof(DWORD);
+    for (uint i = 0; i < count; i++) {
+        if (processes[i] != 0) {
+            DWORD pid = processes[i];
+            HANDLE proc = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+            if (proc != NULL) {
+                HMODULE mod;
+                DWORD needed;
+                if (EnumProcessModules(proc, &mod, sizeof(mod), &needed)) {
+                    TCHAR processName[MAX_PATH] = TEXT("");
+                    //GetModuleBaseName(proc, mod, processName, sizeof(processName) / sizeof(TCHAR));
+                    GetModuleFileNameEx(proc, mod, processName, sizeof(processName) / sizeof(TCHAR));
+                    QString name = QString::fromWCharArray(processName).replace("\\", "/");
+                    for (QString executable : executableNames) {
+                        if (name == executable) isOpen = true;
+                    }
+                }
+            }
+        }
+    }
+
+    if (isOpen) {
+        QMessageBox::warning(this, tr("%1 currently running").arg(metadata.value("name").toString()), tr("Before we continue, you'll need to close %1.").arg(metadata.value("name").toString()), QMessageBox::Ok, QMessageBox::Ok);
+        return;
+    }
+
     ui->stack->setCurrentIndex(1);
 }
 
