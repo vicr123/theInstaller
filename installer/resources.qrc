@@ -5,5 +5,9 @@
         <file>background.svg</file>
         <file>translations/vi_VN.qm</file>
         <file>translations/pt_BR.qm</file>
+        <file>translations/en_AU.qm</file>
+        <file>translations/en_GB.qm</file>
+        <file>translations/en_NZ.qm</file>
+        <file>translations/en_US.qm</file>
     </qresource>
 </RCC>
