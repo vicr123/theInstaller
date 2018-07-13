@@ -10,6 +10,7 @@
 #include <QDir>
 #include <QTimer>
 #include <QStandardPaths>
+#include <QSettings>
 
 class RemoveWorker : public QObject
 {

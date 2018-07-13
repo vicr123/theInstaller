@@ -6,6 +6,8 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QFile>
+#include <QTemporaryFile>
+#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
@@ -36,12 +38,25 @@ int main(int argc, char *argv[])
 
         a.setQuitOnLastWindowClosed(false);
         return a.exec();
-    } else if (QFile(a.applicationDirPath() + "/uninstall.json").exists()) {
+    } else if (a.arguments().contains("--uninstallmetadata")) {
         //Modify UI mode
         MaintainWindow w;
         w.show();
 
         return a.exec();
+    } else if (QFile(a.applicationDirPath() + "/uninstall.json").exists()) {
+        //Prepare uninstall mode
+        QString tempInstallerPath = QDir::tempPath() + "/theinstaller.exe";
+        if (QFile::exists(tempInstallerPath)) {
+            QFile::remove(tempInstallerPath);
+        }
+        if (QFile::copy(QApplication::applicationFilePath(), tempInstallerPath)) {
+            QProcess::startDetached(tempInstallerPath, QStringList() << "--uninstallmetadata" << a.applicationDirPath() + "/uninstall.json");
+            return 0;
+        } else {
+            QMessageBox::warning(nullptr, "Error", "Failed to prepare uninstallation", QMessageBox::Ok, QMessageBox::Ok);
+            return 1;
+        }
     }
 
     //Install UI mode

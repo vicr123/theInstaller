@@ -7,16 +7,19 @@ RemoveWorker::RemoveWorker(QObject *parent) : QObject(parent)
 
 bool RemoveWorker::startWork() {
     QLocalSocket* sock = new QLocalSocket();
+    QString metadataFilePath;
 
     QString previousToken;
     for (QString arg : QApplication::arguments()) {
         if (previousToken != "") {
             if (previousToken == "--socket") {
                 sock->setServerName(arg);
+            } else if (previousToken == "--uninstallmetadata") {
+                metadataFilePath = arg;
             }
             previousToken = "";
         } else {
-            if (arg == "--socket") {
+            if (arg == "--socket" || arg == "--uninstallmetadata") {
                 previousToken = arg;
             }
         }
@@ -24,6 +27,11 @@ bool RemoveWorker::startWork() {
 
     if (sock->serverName() == "") {
         qDebug() << "Required argument --socket missing";
+        return false;
+    }
+
+    if (metadataFilePath == "") {
+        qDebug() << "Required argument --uninstallmetadata missing";
         return false;
     }
 
@@ -38,9 +46,10 @@ bool RemoveWorker::startWork() {
         QApplication::exit(1);
     });
 
-    QFile metadataFile(QApplication::applicationDirPath() + "/uninstall.json");
+    QFile metadataFile(metadataFilePath);
     metadataFile.open(QFile::ReadOnly);
     QJsonObject metadata = QJsonDocument::fromJson(metadataFile.readAll()).object();
+    metadataFile.close();
 
     QString name = metadata.value("name").toString();
     QString vendor = metadata.value("vendor").toString();
@@ -64,6 +73,17 @@ bool RemoveWorker::startWork() {
     //Remove items in installation directory
     QDir dest(metadata.value("installPath").toString());
     dest.removeRecursively();
+
+    //Remove registry entry
+
+    QSettings* settings;
+    if (metadata.value("global").toBool()) {
+        settings = new QSettings("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall", QSettings::NativeFormat);
+    } else {
+        settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall", QSettings::NativeFormat);
+    }
+    settings->remove(metadata.value("registryUuid").toString());
+    settings->sync();
 
     sock->write("COMPLETE\n");
     sock->flush();

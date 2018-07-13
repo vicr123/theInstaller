@@ -102,6 +102,48 @@ bool InstallWorker::startWork() {
         dataRoot.insert("global", isGlobalInstall);
         dataRoot.insert("appurl", url);
 
+        //Write uninstall information to registry
+        QUuid uuid = QUuid::createUuid();
+        dataRoot.insert("registryUuid", uuid.toString());
+        /*HKEY SoftwareEntry;
+        HKEY hive;
+        LPCWSTR keyPath = (LPCWSTR) QString("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString()).utf16();
+
+        if (isGlobalInstall) {
+            hive = HKEY_LOCAL_MACHINE;
+        } else {
+            hive = HKEY_CURRENT_USER;
+        }
+
+        LSTATUS createReturn = RegCreateKeyEx(HKEY_LOCAL_MACHINE, keyPath, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &SoftwareEntry, NULL);
+        if (createReturn == ERROR_SUCCESS) {
+            RegSetValueEx(SoftwareEntry, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*) vendor.toStdString().data(), vendor.count() + 1);
+
+            RegCloseKey(SoftwareEntry);
+
+            sock->write(QString("DEBUG Uninstall GUID: " + uuid.toString()).toUtf8());
+        } else {
+            sock->write(QString("ALERT " + tr("Error writing uninstall information to the registry: Error 0x%1").arg(QString::number(createReturn, 16)) + "\n").toUtf8());
+        }*/
+
+        QSettings* settings;
+        if (isGlobalInstall) {
+            settings = new QSettings("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString(), QSettings::NativeFormat);
+        } else {
+            settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString(), QSettings::NativeFormat);
+        }
+
+        settings->setValue("DisplayName", name);
+        settings->setValue("Publisher", vendor);
+        settings->setValue("Contact", vendor);
+        settings->setValue("ModifyPath", dest.absoluteFilePath("uninstall.exe"));
+        settings->setValue("UninstallString", dest.absoluteFilePath("uninstall.exe"));
+        settings->setValue("InstallDate", QDateTime::currentDateTime().toString("yyyymmdd"));
+        settings->setValue("InstallLocation", dest.path());
+        settings->setValue("DisplayIcon", executableFile.absoluteFilePath() + ",0");
+        settings->sync();
+        settings->deleteLater();
+
         QFile uninstallDataFile(dest.absoluteFilePath("uninstall.json"));
         uninstallDataFile.open(QFile::WriteOnly);
         uninstallDataFile.write(QJsonDocument(dataRoot).toJson());

@@ -15,10 +15,12 @@
 #include <QStandardPaths>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QUuid>
+#include <QSettings>
 
 #include <quazip/JlCompress.h>
 
-#include <iostream>
+#include <winreg.h>
 
 class InstallWorker : public QObject
 {

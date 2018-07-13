@@ -50,6 +50,7 @@ private:
     QPixmap backgroundImage;
     QWinTaskbarButton* taskbarButton;
     QJsonObject metadata;
+    QString metadataFile;
     bool modifyDone = false;
 };
 

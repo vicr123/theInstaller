@@ -14,9 +14,25 @@ MaintainWindow::MaintainWindow(QWidget *parent) :
 
     ui->performUninstallButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_VistaShield));
 
-    QFile metadataFile(QApplication::applicationDirPath() + "/uninstall.json");
+    QString previousToken;
+    for (QString arg : QApplication::arguments()) {
+        if (previousToken != "") {
+            if (previousToken == "--uninstallmetadata") {
+                this->metadataFile = arg;
+            }
+            previousToken = "";
+        } else {
+            if (arg == "--uninstallmetadata") {
+                previousToken = arg;
+            }
+        }
+    }
+
+    QFile metadataFile(this->metadataFile);
     metadataFile.open(QFile::ReadOnly);
     metadata = QJsonDocument::fromJson(metadataFile.readAll()).object();
+
+    ui->areYouSureText->setText(tr("Are you sure you want to uninstall %1?").arg(metadata.value("name").toString()));
 }
 
 MaintainWindow::~MaintainWindow()
@@ -107,6 +123,7 @@ void MaintainWindow::on_performUninstallButton_clicked()
         QStringList args;
         args.append("\"--remove\"");
         args.append("\"--socket " + socketServer->serverName() + "\"");
+        args.append("\"--uninstallmetadata \"\"" + metadataFile + "\"\"\"");
 
         QStringList psArgs;
         psArgs.append("-FilePath \"" + QApplication::applicationFilePath() + "\"");

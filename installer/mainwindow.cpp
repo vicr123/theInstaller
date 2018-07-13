@@ -154,6 +154,9 @@ void MainWindow::on_installButton_clicked()
                     ui->stack->setCurrentIndex(5);
 
                     taskbarButton->progress()->setVisible(false);
+                } else if (parts.at(0) == "ALERT") {
+                    parts.takeFirst();
+                    QMessageBox::warning(this, tr("Warning"), parts.join(" "), QMessageBox::Ok, QMessageBox::Ok);
                 }
             }
         });
