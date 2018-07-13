@@ -32,6 +32,7 @@ MaintainWindow::MaintainWindow(QWidget *parent) :
     metadataFile.open(QFile::ReadOnly);
     metadata = QJsonDocument::fromJson(metadataFile.readAll()).object();
 
+    this->setWindowTitle(tr("Modify %1").arg(metadata.value("name").toString()));
     ui->areYouSureText->setText(tr("Are you sure you want to uninstall %1?").arg(metadata.value("name").toString()));
 }
 

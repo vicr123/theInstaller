@@ -188,7 +188,8 @@ FORMS += \
     maintainwindow.ui
 
 TRANSLATIONS += \
-    translations/vi_VN.ts
+    translations/vi_VN.ts \
+    translations/pt_BR.ts
 
 win32 {
     #CONFIG += embed_manifest_exe

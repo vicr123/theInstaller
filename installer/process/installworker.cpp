@@ -103,8 +103,8 @@ bool InstallWorker::startWork() {
         dataRoot.insert("appurl", url);
 
         //Write uninstall information to registry
-        QUuid uuid = QUuid::createUuid();
-        dataRoot.insert("registryUuid", uuid.toString());
+        //QUuid uuid = QUuid::createUuid();
+        dataRoot.insert("registryUuid", name);
         /*HKEY SoftwareEntry;
         HKEY hive;
         LPCWSTR keyPath = (LPCWSTR) QString("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString()).utf16();
@@ -128,17 +128,17 @@ bool InstallWorker::startWork() {
 
         QSettings* settings;
         if (isGlobalInstall) {
-            settings = new QSettings("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString(), QSettings::NativeFormat);
+            settings = new QSettings("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + name, QSettings::NativeFormat);
         } else {
-            settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString(), QSettings::NativeFormat);
+            settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + name, QSettings::NativeFormat);
         }
 
         settings->setValue("DisplayName", name);
         settings->setValue("Publisher", vendor);
         settings->setValue("Contact", vendor);
-        settings->setValue("ModifyPath", dest.absoluteFilePath("uninstall.exe"));
-        settings->setValue("UninstallString", dest.absoluteFilePath("uninstall.exe"));
-        settings->setValue("InstallDate", QDateTime::currentDateTime().toString("yyyymmdd"));
+        settings->setValue("ModifyPath", "\"" + dest.absoluteFilePath("uninstall.exe").replace("/", "\\") + "\"");
+        settings->setValue("UninstallString", "\"" + dest.absoluteFilePath("uninstall.exe").replace("/", "\\") + "\"");
+        settings->setValue("InstallDate", QDateTime::currentDateTime().toString("yyyyMMdd"));
         settings->setValue("InstallLocation", dest.path());
         settings->setValue("DisplayIcon", executableFile.absoluteFilePath() + ",0");
         settings->sync();

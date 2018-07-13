@@ -4,5 +4,6 @@
         <file>icon-bp.svg</file>
         <file>background.svg</file>
         <file>translations/vi_VN.qm</file>
+        <file>translations/pt_BR.qm</file>
     </qresource>
 </RCC>

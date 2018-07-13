@@ -206,7 +206,9 @@ void MainWindow::on_installButton_clicked()
         QStringList psArgs;
         psArgs.append("-FilePath \"" + QApplication::applicationFilePath() + "\"");
         psArgs.append("-ArgumentList (" + args.join(",") + ")");
-        psArgs.append("-Verb runAs");
+        if (ui->installEveryone->isChecked()) {
+            psArgs.append("-Verb runAs");
+        }
         psArgs.append("-PassThru");
         psArgs.append("-Wait");
 

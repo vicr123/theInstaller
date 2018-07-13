@@ -75,7 +75,6 @@ bool RemoveWorker::startWork() {
     dest.removeRecursively();
 
     //Remove registry entry
-
     QSettings* settings;
     if (metadata.value("global").toBool()) {
         settings = new QSettings("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall", QSettings::NativeFormat);
