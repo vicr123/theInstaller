@@ -95,7 +95,7 @@
     <message>
         <location filename="../mainwindow.ui" line="356"/>
         <source>Stream</source>
-        <translation>Zweig</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
