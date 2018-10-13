@@ -20,6 +20,7 @@
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
 #include <QShowEvent>
+#include "licensewidget.h"
 
 #include <windows.h>
 #include <shellapi.h>
@@ -64,6 +65,8 @@ class MainWindow : public QMainWindow
 
         void on_browseInstallPathButton_clicked();
 
+        void on_licenseLabel_linkActivated(const QString &link);
+
     private:
         Ui::MainWindow *ui;
 
@@ -76,6 +79,9 @@ class MainWindow : public QMainWindow
         QWinTaskbarButton* taskbarButton;
         QLocalSocket* sock = nullptr;
         bool installDone = false;
+        LicenseWidget* licenseWidget;
+
+        QMap<QString, QString> licenses;
 };
 
 #endif // MAINWINDOW_H

@@ -4,6 +4,7 @@
 #include <QSettings>
 #include <QDirIterator>
 #include <QFileDialog>
+#include <QJsonArray>
 
 extern float getDPIScaling();
 
@@ -15,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setFixedSize(this->size() * getDPIScaling());
     backgroundImage = QIcon(":/background.svg").pixmap(this->size());
+    licenseWidget = new LicenseWidget(this);
+    licenseWidget->hide();
 
     ui->topSpacer1->changeSize(ui->topSpacer1->sizeHint().width(), ui->topSpacer1->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
     ui->topSpacer2->changeSize(ui->topSpacer2->sizeHint().width(), ui->topSpacer2->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -23,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->topSpacer5->changeSize(ui->topSpacer5->sizeHint().width(), ui->topSpacer5->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
     ui->topSpacer6->changeSize(ui->topSpacer6->sizeHint().width(), ui->topSpacer6->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
     ui->topSpacer7->changeSize(ui->topSpacer7->sizeHint().width(), ui->topSpacer7->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->leftSpacer->changeSize(ui->leftSpacer->sizeHint().width() * getDPIScaling(), ui->leftSpacer->sizeHint().height(), QSizePolicy::Fixed, QSizePolicy::Preferred);
+    ui->rightSpacer->changeSize(ui->rightSpacer->sizeHint().width() * getDPIScaling(), ui->rightSpacer->sizeHint().height(), QSizePolicy::Fixed, QSizePolicy::Preferred);
 
     taskbarButton = new QWinTaskbarButton(this);
 
@@ -103,6 +108,48 @@ void MainWindow::getInstallerMetadata() {
                     ui->installButton->setText(tr("Update Now"));
                     ui->installOptions->setVisible(false);
                 }
+            }
+
+            //Check the license
+            if (obj.contains("license")) {
+                QJsonArray licenses = obj.value("license").toArray();
+
+                QStringList licenseLinks;
+                for (QJsonValue l : licenses) {
+                    QJsonObject license = l.toObject();
+                    QString type = license.value("type").toString();
+
+                    if (type == "GPL3") {
+                        QFile text(":/licenses/gpl3.html");
+                        text.open(QFile::ReadOnly);
+                        this->licenses.insert(tr("GNU General Public License, version 3"), text.readAll());
+                        licenseLinks.append(QString("<a href=\"%1\">%1</a>").arg(tr("GNU General Public License, version 3")));
+                    } else if (type == "GPL3+") {
+                        QFile text(":/licenses/gpl3.html");
+                        text.open(QFile::ReadOnly);
+                        this->licenses.insert(tr("GNU General Public License, version 3, or later"), text.readAll());
+                        licenseLinks.append(QString("<a href=\"%1\">%1</a>").arg(tr("GNU General Public License, version 3, or later")));
+                    } else if (type == "GPL2") {
+                        QFile text(":/licenses/gpl2.html");
+                        text.open(QFile::ReadOnly);
+                        this->licenses.insert(tr("GNU General Public License, version 2"), text.readAll());
+                        licenseLinks.append(QString("<a href=\"%1\">%1</a>").arg(tr("GNU General Public License, version 2")));
+                    } else if (type == "GPL2+") {
+                        QFile text(":/licenses/gpl2.html");
+                        text.open(QFile::ReadOnly);
+                        this->licenses.insert(tr("GNU General Public License, version 2, or later"), text.readAll());
+                        licenseLinks.append(QString("<a href=\"%1\">%1</a>").arg(tr("GNU General Public License, version 2, or later")));
+                    } else {
+                        this->licenses.insert(type, license.value("text").toString());
+                        licenseLinks.append(QString("<a href=\"%1\">%1</a>").arg(type));
+                    }
+                }
+
+                ui->licenseLabel->setText(tr("By installing %1, you're indicating agreement to the terms of the %2.").arg(obj.value("name").toString(), licenseLinks.join(", ")));
+                ui->licenseLabel->setVisible(true);
+            } else {
+                //No license available
+                ui->licenseLabel->setVisible(false);
             }
 
             ui->stack->setCurrentIndex(2);
@@ -387,4 +434,9 @@ void MainWindow::on_browseInstallPathButton_clicked()
     if (d.exec() == QFileDialog::Accepted) {
         ui->installPathLineEdit->setText(d.selectedFiles().first());
     }
+}
+
+void MainWindow::on_licenseLabel_linkActivated(const QString &link)
+{
+    licenseWidget->show(link, this->licenses.value(link));
 }

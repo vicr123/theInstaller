@@ -9,5 +9,7 @@
         <file>translations/en_GB.qm</file>
         <file>translations/en_NZ.qm</file>
         <file>translations/en_US.qm</file>
+        <file>licenses/gpl3.html</file>
+        <file>icons/go-previous.svg</file>
     </qresource>
 </RCC>

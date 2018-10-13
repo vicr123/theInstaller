@@ -102,7 +102,8 @@ SOURCES += \
     quazip/unzip.c \
     quazip/zip.c \
     maintainwindow.cpp \
-    process/removeworker.cpp
+    process/removeworker.cpp \
+    licensewidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -182,11 +183,13 @@ HEADERS += \
     fadestackedwidget.h \
     mainwindow.h \
     maintainwindow.h \
-    process/removeworker.h
+    process/removeworker.h \
+    licensewidget.h
 
 FORMS += \
         mainwindow.ui \
-    maintainwindow.ui
+    maintainwindow.ui \
+    licensewidget.ui
 
 TRANSLATIONS += \
     translations/vi_VN.ts \
