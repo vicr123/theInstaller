@@ -185,30 +185,30 @@
         <location filename="../mainwindow.cpp" line="125"/>
         <location filename="../mainwindow.cpp" line="126"/>
         <source>GNU General Public License, version 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Giấy phép công cộng GNU, phiên bản 3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="130"/>
         <location filename="../mainwindow.cpp" line="131"/>
         <source>GNU General Public License, version 3, or later</source>
-        <translation type="unfinished"></translation>
+        <translation>Giấy phép công cộng GNU, phiên bản 3, hoặc mới hơn</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="135"/>
         <location filename="../mainwindow.cpp" line="136"/>
         <source>GNU General Public License, version 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Giấy phép công cộng GNU, phiên bản 2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="140"/>
         <location filename="../mainwindow.cpp" line="141"/>
         <source>GNU General Public License, version 2, or later</source>
-        <translation type="unfinished"></translation>
+        <translation>Giấy phép công cộng GNU, phiên bản 2, hoặc mới hơn</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="148"/>
         <source>By installing %1, you&apos;re indicating agreement to the terms of the %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nếu bạn cài đặt %1, bạn sẽ đồng ý với các điều khoản của cái %2.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="158"/>
