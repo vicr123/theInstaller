@@ -1,14 +1,22 @@
 #include "maintainwindow.h"
 #include "ui_maintainwindow.h"
 
+extern float getDPIScaling();
+
 MaintainWindow::MaintainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MaintainWindow)
 {
     ui->setupUi(this);
 
-    this->setFixedSize(this->size());
+    this->setFixedSize(this->size() * getDPIScaling());
     backgroundImage = QIcon(":/background.svg").pixmap(this->size());
+
+    ui->topSpacer1->changeSize(ui->topSpacer1->sizeHint().width(), ui->topSpacer1->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer2->changeSize(ui->topSpacer2->sizeHint().width(), ui->topSpacer2->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer3->changeSize(ui->topSpacer3->sizeHint().width(), ui->topSpacer3->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer4->changeSize(ui->topSpacer4->sizeHint().width(), ui->topSpacer4->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer5->changeSize(ui->topSpacer5->sizeHint().width(), ui->topSpacer5->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     taskbarButton = new QWinTaskbarButton(this);
 

@@ -16,6 +16,14 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setFixedSize(this->size() * getDPIScaling());
     backgroundImage = QIcon(":/background.svg").pixmap(this->size());
 
+    ui->topSpacer1->changeSize(ui->topSpacer1->sizeHint().width(), ui->topSpacer1->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer2->changeSize(ui->topSpacer2->sizeHint().width(), ui->topSpacer2->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer3->changeSize(ui->topSpacer3->sizeHint().width(), ui->topSpacer3->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer4->changeSize(ui->topSpacer4->sizeHint().width(), ui->topSpacer4->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer5->changeSize(ui->topSpacer5->sizeHint().width(), ui->topSpacer5->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer6->changeSize(ui->topSpacer6->sizeHint().width(), ui->topSpacer6->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+    ui->topSpacer7->changeSize(ui->topSpacer7->sizeHint().width(), ui->topSpacer7->sizeHint().height() * getDPIScaling(), QSizePolicy::Preferred, QSizePolicy::Fixed);
+
     taskbarButton = new QWinTaskbarButton(this);
 
     //ui->appIcon->setPixmap(QIcon(":/icon.svg").pixmap(128, 128));

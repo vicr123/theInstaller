@@ -39,7 +39,7 @@
       <widget class="QWidget" name="page_3">
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <spacer name="verticalSpacer_5">
+         <spacer name="topSpacer1">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -82,7 +82,7 @@
       <widget class="QWidget" name="page_4">
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
-         <spacer name="verticalSpacer_7">
+         <spacer name="topSpacer2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -184,7 +184,7 @@
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <spacer name="verticalSpacer_2">
+         <spacer name="topSpacer3">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -299,7 +299,7 @@
       <widget class="QWidget" name="page_2">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <spacer name="verticalSpacer_3">
+         <spacer name="topSpacer4">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -519,7 +519,7 @@
       <widget class="QWidget" name="page_5">
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
-         <spacer name="verticalSpacer_9">
+         <spacer name="topSpacer5">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -615,7 +615,7 @@
       <widget class="QWidget" name="page_6">
        <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
-         <spacer name="verticalSpacer_11">
+         <spacer name="topSpacer6">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -732,7 +732,7 @@
       <widget class="QWidget" name="page_7">
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
-         <spacer name="verticalSpacer_13">
+         <spacer name="topSpacer7">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
