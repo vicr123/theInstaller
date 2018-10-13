@@ -7,83 +7,75 @@
         <location filename="../process/installworker.cpp" line="65"/>
         <location filename="../process/installworker.cpp" line="184"/>
         <source>Downloading %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Downloaden...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="88"/>
         <source>Unpacking %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Uitpakken...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="102"/>
         <source>Configuring %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Instellen...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="193"/>
         <source>%1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 van %2</translation>
     </message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="205"/>
         <source>%n days remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>%n dag resterend</numerusform>
+        <numerusform>%n dagen resterend</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="207"/>
         <source>%n hours remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>%n uur resterend</numerusform>
+        <numerusform>%n uren resterend</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="209"/>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>%n minuut resterend</numerusform>
+        <numerusform>%n minuten resterend</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="211"/>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>%n seconde resterend</numerusform>
+        <numerusform>%n seconden resterend</numerusform>
+        </translation></message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="60"/>
         <source>Getting ready...</source>
-        <translation type="unfinished"></translation>
+        <translation>Voorbereiden...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="108"/>
         <source>This shouldn&apos;t be happening...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit hoort niet te gebeuren...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
         <source>Cancel Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuleer Installatie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="150"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Overnieuw proberen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
         <location filename="../mainwindow.ui" line="481"/>
         <source>Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu Installeren</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="262"/>
