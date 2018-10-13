@@ -54,14 +54,6 @@
     </message>
 </context>
 <context>
-    <name>LicenseWidget</name>
-    <message>
-        <location filename="../licensewidget.ui" line="219"/>
-        <source>License Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="60"/>

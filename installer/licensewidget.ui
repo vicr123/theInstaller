@@ -216,7 +216,7 @@
         </font>
        </property>
        <property name="text">
-        <string>License Name</string>
+        <string notr="true">License Name</string>
        </property>
        <property name="margin">
         <number>9</number>
