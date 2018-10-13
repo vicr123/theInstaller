@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" sourcelanguage="en_US">
+<TS version="2.1" language="en_GB" sourcelanguage="en_US">
 <context>
     <name>InstallWorker</name>
     <message>
-        <location filename="../process/installworker.cpp" line="65"/>
-        <location filename="../process/installworker.cpp" line="184"/>
+        <location filename="../process/installworker.cpp" line="76"/>
+        <location filename="../process/installworker.cpp" line="183"/>
         <source>Downloading %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="88"/>
+        <location filename="../process/installworker.cpp" line="101"/>
         <source>Unpacking %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="102"/>
+        <location filename="../process/installworker.cpp" line="118"/>
         <source>Configuring %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="193"/>
+        <location filename="../process/installworker.cpp" line="192"/>
         <source>%1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="205"/>
+        <location filename="../process/installworker.cpp" line="204"/>
         <source>%n days remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n day remaining</numerusform>
+            <numerusform>%n days remaining</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="207"/>
+        <location filename="../process/installworker.cpp" line="206"/>
         <source>%n hours remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n hour remaining</numerusform>
+            <numerusform>%n hours remaining</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="209"/>
+        <location filename="../process/installworker.cpp" line="208"/>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n minute remaining</numerusform>
+            <numerusform>%n minutes remaining</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="211"/>
+        <location filename="../process/installworker.cpp" line="210"/>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n second remaining</numerusform>
+            <numerusform>%n seconds remaining</numerusform>
         </translation>
     </message>
 </context>
@@ -127,67 +131,87 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="606"/>
+        <location filename="../mainwindow.ui" line="594"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="636"/>
         <source>Installation is complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="668"/>
+        <location filename="../mainwindow.ui" line="698"/>
         <source>Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="723"/>
+        <location filename="../mainwindow.ui" line="753"/>
         <source>Installation failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="748"/>
+        <location filename="../mainwindow.ui" line="778"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="755"/>
+        <location filename="../mainwindow.ui" line="785"/>
         <source>Try Again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="39"/>
+        <location filename="../mainwindow.cpp" line="45"/>
         <source>Invalid metadata was received</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="46"/>
+        <location filename="../mainwindow.cpp" line="52"/>
         <source>Application name not in metadata</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="56"/>
+        <location filename="../mainwindow.cpp" line="62"/>
         <source>Open %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="57"/>
+        <location filename="../mainwindow.cpp" line="63"/>
         <source>Install %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="65"/>
+        <location filename="../mainwindow.cpp" line="95"/>
+        <source>Update Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="103"/>
         <source>Couldn&apos;t retrieve metadata</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="69"/>
+        <location filename="../mainwindow.cpp" line="107"/>
         <source>Couldn&apos;t connect securely to the server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
+        <location filename="../mainwindow.cpp" line="189"/>
+        <source>%1 currently running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="189"/>
+        <source>Before we continue, you&apos;ll need to close %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="201"/>
         <source>Getting ready to install %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="159"/>
+        <location filename="../mainwindow.cpp" line="241"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>

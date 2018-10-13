@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QTemporaryFile>
 #include <QMessageBox>
+#include <QDesktopWidget>
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
 
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
+    qDebug() << a.arguments();
     if (a.arguments().contains("--install")) {
         //Installer mode
         InstallWorker worker;
@@ -44,6 +46,26 @@ int main(int argc, char *argv[])
         w.show();
 
         return a.exec();
+    } else if (a.arguments().contains("--update")) {
+        //Prepare update mode
+        QString tempInstallerPath = QDir::tempPath() + "/theinstaller.exe";
+        if (QFile::exists(tempInstallerPath)) {
+            QFile::remove(tempInstallerPath);
+        }
+        if (QFile::copy(QApplication::applicationFilePath(), tempInstallerPath)) {
+            QProcess::startDetached(tempInstallerPath);
+            return 0;
+        } else {
+            QMessageBox box;
+            box.setWindowTitle("Error");
+            box.setText("Couldn't prepare for update. We won't be able to update at this time.");
+            box.setDetailedText("Here are some things you can try:\n"
+                                "- Your antivirus software may be blocking the updater. Try disabling any antivirus software while you update\n"
+                                "- Your temporary folder is not able to be written to");
+            box.setIcon(QMessageBox::Critical);
+            box.exec();
+            return 1;
+        }
     } else if (QFile(a.applicationDirPath() + "/uninstall.json").exists()) {
         //Prepare uninstall mode
         QString tempInstallerPath = QDir::tempPath() + "/theinstaller.exe";
@@ -54,7 +76,14 @@ int main(int argc, char *argv[])
             QProcess::startDetached(tempInstallerPath, QStringList() << "--uninstallmetadata" << a.applicationDirPath() + "/uninstall.json");
             return 0;
         } else {
-            QMessageBox::warning(nullptr, "Error", "Failed to prepare uninstallation", QMessageBox::Ok, QMessageBox::Ok);
+            QMessageBox box;
+            box.setWindowTitle("Error");
+            box.setText("Couldn't prepare for uninstallation. We won't be able to uninstall at this time.");
+            box.setDetailedText("Here are some things you can try:\n"
+                                "- Your antivirus software may be blocking the uninstaller. Try disabling any antivirus software while you uninstall\n"
+                                "- Your temporary folder is not able to be written to");
+            box.setIcon(QMessageBox::Critical);
+            box.exec();
             return 1;
         }
     }
@@ -79,4 +108,9 @@ QString calculateSize(quint64 size) {
     }
 
     return ret;
+}
+
+float getDPIScaling() {
+    float currentDPI = QApplication::desktop()->logicalDpiX();
+    return currentDPI / (float) 96;
 }

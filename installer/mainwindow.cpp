@@ -1,13 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QSettings>
+#include <QDirIterator>
+#include <QFileDialog>
+
+extern float getDPIScaling();
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    this->setFixedSize(this->size());
+    this->setFixedSize(this->size() * getDPIScaling());
     backgroundImage = QIcon(":/background.svg").pixmap(this->size());
 
     taskbarButton = new QWinTaskbarButton(this);
@@ -58,6 +64,38 @@ void MainWindow::getInstallerMetadata() {
 
             this->metadata = obj;
             setInstallPath();
+
+            //Check that the application is not already installed
+            QStringList hives;
+            hives << "HKEY_LOCAL_MACHINE" << "HKEY_CURRENT_USER";
+            for (QString hive : hives) {
+                QSettings checker("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + obj.value("name").toString(), QSettings::NativeFormat);
+                if (checker.contains("InstallLocation")) {
+                    //We should update the installation instead
+                    QFile metadataFile(checker.value("InstallLocation").toString() + "/uninstall.json");
+                    metadataFile.open(QFile::ReadOnly);
+                    QJsonObject metadata = QJsonDocument::fromJson(metadataFile.readAll()).object();
+                    metadataFile.close();
+
+                    ui->installPathLineEdit->setText(metadata.value("installPath").toString());
+                    if (metadata.value("global").toBool()) {
+                        ui->installEveryone->setChecked(true);
+                        ui->installButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_VistaShield));
+                    } else {
+                        ui->installEveryone->setChecked(false);
+                        ui->installButton->setIcon(QIcon());
+                    }
+
+                    if (metadata.value("stream").toBool(true)) {
+                        ui->stableStream->setChecked(true);
+                    } else {
+                        ui->stableStream->setChecked(false);
+                    }
+
+                    ui->installButton->setText(tr("Update Now"));
+                    ui->installOptions->setVisible(false);
+                }
+            }
 
             ui->stack->setCurrentIndex(2);
         });
@@ -110,11 +148,55 @@ void MainWindow::on_installEveryone_toggled(bool checked)
 
 void MainWindow::on_installButton_clicked()
 {
+    //Check for executables inside destination directory
+    QDir destdir(ui->installPathLineEdit->text());
+    QStringList executableNames;
+    QDirIterator iterator(destdir, QDirIterator::Subdirectories);
+    while (iterator.hasNext()) {
+        iterator.next();
+        QFileInfo executable = iterator.fileInfo();
+        if (executable.suffix() == "exe") {
+            executableNames.append(executable.filePath());
+        }
+    }
+
+    //Check app isn't running
+    bool isOpen = false;
+
+    DWORD processes[1024], needed;
+    EnumProcesses(processes, sizeof(processes), &needed);
+    DWORD count = needed / sizeof(DWORD);
+    for (uint i = 0; i < count; i++) {
+        if (processes[i] != 0) {
+            DWORD pid = processes[i];
+            HANDLE proc = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+            if (proc != NULL) {
+                HMODULE mod;
+                DWORD needed;
+                if (EnumProcessModules(proc, &mod, sizeof(mod), &needed)) {
+                    TCHAR processName[MAX_PATH] = TEXT("");
+                    GetModuleFileNameEx(proc, mod, processName, sizeof(processName) / sizeof(TCHAR));
+                    QString name = QString::fromWCharArray(processName).replace("\\", "/");
+                    for (QString executable : executableNames) {
+                        if (name == executable) isOpen = true;
+                    }
+                }
+            }
+        }
+    }
+
+    if (isOpen) {
+        QMessageBox::warning(this, tr("%1 currently running").arg(metadata.value("name").toString()), tr("Before we continue, you'll need to close %1.").arg(metadata.value("name").toString()), QMessageBox::Ok, QMessageBox::Ok);
+        return;
+    }
+
     this->setWindowFlag(Qt::WindowCloseButtonHint, false);
     this->show();
 
     taskbarButton->progress()->reset();
     taskbarButton->progress()->setRange(0, 0);
+    ui->cancelInstallButton->setVisible(true);
+    ui->cancelInstallButton->setEnabled(true);
     ui->stack->setCurrentIndex(4);
     ui->statusLabel->setText(tr("Getting ready to install %1...").arg(metadata.value("name").toString()));
 
@@ -127,7 +209,7 @@ void MainWindow::on_installButton_clicked()
 
     socketServer->listen("theinstaller." + metadata.value("vendor").toString() + "." + metadata.value("name").toString() + "." + serverNumber);
     connect(socketServer, &QLocalServer::newConnection, [=] {
-        QLocalSocket* sock = socketServer->nextPendingConnection();
+        sock = socketServer->nextPendingConnection();
 
         connect(sock, &QLocalSocket::readyRead, [=] {
             QStringList lines = QString(sock->readAll()).split("\n");
@@ -157,6 +239,8 @@ void MainWindow::on_installButton_clicked()
                 } else if (parts.at(0) == "ALERT") {
                     parts.takeFirst();
                     QMessageBox::warning(this, tr("Warning"), parts.join(" "), QMessageBox::Ok, QMessageBox::Ok);
+                } else if (parts.at(0) == "STOPCANCEL") {
+                    ui->cancelInstallButton->setVisible(false);
                 }
             }
         });
@@ -263,12 +347,36 @@ void MainWindow::on_finishButton_clicked()
         } else {
             executable = metadata.value("blueprint").toObject().value("executableName").toString();
         }
-        QProcess::startDetached(destdir + executable);
+
+        QString start = "\"" + destdir + executable + "\"";
+        start.replace("\\", "/");
+        qDebug() << "Starting " + start;
+        QProcess::startDetached(start);
     }
+
     this->close();
 }
 
 void MainWindow::showEvent(QShowEvent *event) {
     taskbarButton->setWindow(this->windowHandle());
     taskbarButton->progress()->setVisible(true);
+}
+
+void MainWindow::on_cancelInstallButton_clicked()
+{
+    if (sock != nullptr) {
+        ui->cancelInstallButton->setEnabled(false);
+        sock->write(QString("CANCEL\n").toUtf8());
+    }
+}
+
+void MainWindow::on_browseInstallPathButton_clicked()
+{
+    QFileDialog d;
+    d.setAcceptMode(QFileDialog::AcceptOpen);
+    d.setFileMode(QFileDialog::Directory);
+    d.setDirectory(ui->installPathLineEdit->text());
+    if (d.exec() == QFileDialog::Accepted) {
+        ui->installPathLineEdit->setText(d.selectedFiles().first());
+    }
 }

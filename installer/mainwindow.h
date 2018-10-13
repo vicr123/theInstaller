@@ -23,6 +23,7 @@
 
 #include <windows.h>
 #include <shellapi.h>
+#include <Psapi.h>
 
 namespace Ui {
 class MainWindow;
@@ -32,44 +33,49 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
+        ~MainWindow();
 
-private slots:
-    void on_installOptions_clicked();
+    private slots:
+        void on_installOptions_clicked();
 
-    void getInstallerMetadata();
+        void getInstallerMetadata();
 
-    void setInstallPath();
+        void setInstallPath();
 
-    void on_cancelMetadataButton_clicked();
+        void on_cancelMetadataButton_clicked();
 
-    void on_retryMetadataButton_clicked();
+        void on_retryMetadataButton_clicked();
 
-    void on_installEveryone_toggled(bool checked);
+        void on_installEveryone_toggled(bool checked);
 
-    void on_installButton_clicked();
+        void on_installButton_clicked();
 
-    void on_installButton_2_clicked();
+        void on_installButton_2_clicked();
 
-    void on_exitButton_clicked();
+        void on_exitButton_clicked();
 
-    void on_retryInstallButton_clicked();
+        void on_retryInstallButton_clicked();
 
-    void on_finishButton_clicked();
+        void on_finishButton_clicked();
 
-private:
-    Ui::MainWindow *ui;
+        void on_cancelInstallButton_clicked();
 
-    void paintEvent(QPaintEvent* event);
-    void showEvent(QShowEvent* event);
+        void on_browseInstallPathButton_clicked();
 
-    QNetworkAccessManager mgr;
-    QPixmap backgroundImage;
-    QJsonObject metadata;
-    QWinTaskbarButton* taskbarButton;
-    bool installDone = false;
+    private:
+        Ui::MainWindow *ui;
+
+        void paintEvent(QPaintEvent* event);
+        void showEvent(QShowEvent* event);
+
+        QNetworkAccessManager mgr;
+        QPixmap backgroundImage;
+        QJsonObject metadata;
+        QWinTaskbarButton* taskbarButton;
+        QLocalSocket* sock = nullptr;
+        bool installDone = false;
 };
 
 #endif // MAINWINDOW_H

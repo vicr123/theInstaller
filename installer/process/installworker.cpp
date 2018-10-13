@@ -58,6 +58,17 @@ bool InstallWorker::startWork() {
         qDebug() << "Socket closed";
         QApplication::exit(1);
     });
+    connect(sock, &QLocalSocket::readyRead, [=] {
+        QStringList lines = QString(sock->readAll()).split("\n");
+        for (QString line : lines) {
+            QStringList parts = line.split(" ");
+            if (parts.at(0) == "CANCEL") {
+                if (currentlyCancelable) {
+                    QApplication::exit(0);
+                }
+            }
+        }
+    });
 
     if (!packageFile.open() || !packageTemporaryDir.isValid()) {
         return false;
@@ -85,10 +96,15 @@ bool InstallWorker::startWork() {
 
         flipper->stop();
 
+        currentlyCancelable = false;
+        sock->write(QString("STOPCANCEL\n").toUtf8());
         sock->write(QString("STATUS ").append(tr("Unpacking %1...").arg(name)).append("\n").toUtf8());
         sock->write("PROGRESS 0 0\n");
         sock->write(QString("DEBUG %1").arg(packageTemporaryDir.path()).toUtf8());
 
+        if (QDir(destPath).exists()) {
+            QDir(destPath).removeRecursively();
+        }
         QDir::root().mkpath(destPath);
         QDir dest(destPath);
 
@@ -111,7 +127,11 @@ bool InstallWorker::startWork() {
         startMenu.cd(vendor + "/" + name);
 
         QFileInfo executableFile(destPath + "/" + executable);
-        QFile::link(executableFile.absoluteFilePath(), startMenu.absoluteFilePath(executableFile.completeBaseName() + ".lnk"));
+        QString linkFile = startMenu.absoluteFilePath(executableFile.completeBaseName() + ".lnk");
+        if (QFile::exists(linkFile)) {
+            QFile::remove(linkFile);
+        }
+        QFile::link(executableFile.absoluteFilePath(), linkFile);
         QFile::copy(QApplication::applicationFilePath(), dest.absoluteFilePath("uninstall.exe"));
 
         QJsonObject dataRoot;
@@ -120,30 +140,8 @@ bool InstallWorker::startWork() {
         dataRoot.insert("installPath", destPath);
         dataRoot.insert("global", isGlobalInstall);
         dataRoot.insert("appurl", url);
-
-        //Write uninstall information to registry
-        //QUuid uuid = QUuid::createUuid();
+        dataRoot.insert("stream", isStableStream);
         dataRoot.insert("registryUuid", name);
-        /*HKEY SoftwareEntry;
-        HKEY hive;
-        LPCWSTR keyPath = (LPCWSTR) QString("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + uuid.toString()).utf16();
-
-        if (isGlobalInstall) {
-            hive = HKEY_LOCAL_MACHINE;
-        } else {
-            hive = HKEY_CURRENT_USER;
-        }
-
-        LSTATUS createReturn = RegCreateKeyEx(HKEY_LOCAL_MACHINE, keyPath, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &SoftwareEntry, NULL);
-        if (createReturn == ERROR_SUCCESS) {
-            RegSetValueEx(SoftwareEntry, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*) vendor.toStdString().data(), vendor.count() + 1);
-
-            RegCloseKey(SoftwareEntry);
-
-            sock->write(QString("DEBUG Uninstall GUID: " + uuid.toString()).toUtf8());
-        } else {
-            sock->write(QString("ALERT " + tr("Error writing uninstall information to the registry: Error 0x%1").arg(QString::number(createReturn, 16)) + "\n").toUtf8());
-        }*/
 
         QSettings* settings;
         if (isGlobalInstall) {
@@ -152,6 +150,7 @@ bool InstallWorker::startWork() {
             settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + name, QSettings::NativeFormat);
         }
 
+        settings->clear();
         settings->setValue("DisplayName", name);
         settings->setValue("Publisher", vendor);
         settings->setValue("Contact", vendor);

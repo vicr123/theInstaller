@@ -42,6 +42,7 @@ private:
     int lastBytesReceived;
     QDateTime lastTimeUpdate;
     bool emitStatus = true;
+    bool currentlyCancelable = true;
 };
 
 #endif // INSTALLWORKER_H
