@@ -22,36 +22,28 @@
     <message>
         <location filename="../process/installworker.cpp" line="192"/>
         <source>%1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 trén %2</translation>
     </message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="204"/>
         <source>%n days remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Còn %n ngày</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="206"/>
         <source>%n hours remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Còn %n tiếng</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="208"/>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Còn %n phút</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="210"/>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Còn %n giay</numerusform>
+        </translation></message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -99,7 +91,7 @@
     <message>
         <location filename="../mainwindow.ui" line="356"/>
         <source>Stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Phiên bản phần mềm</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
@@ -119,17 +111,17 @@
     <message>
         <location filename="../mainwindow.ui" line="438"/>
         <source>Stable</source>
-        <translation type="unfinished"></translation>
+        <translation>Bình thường</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="454"/>
         <source>Blueprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Mới nhất</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="594"/>
         <source>Cancel</source>
-        <translation type="unfinished">Hủy</translation>
+        <translation>Hủy</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="636"/>
@@ -159,12 +151,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="45"/>
         <source>Invalid metadata was received</source>
-        <translation type="unfinished"></translation>
+        <translation>Siêu dữ liệu không được nhận thành công</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="52"/>
         <source>Application name not in metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên không tìm thấy trong siêu dữ liệu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="62"/>
@@ -179,27 +171,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="95"/>
         <source>Update Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Cập nhật ngay</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
         <source>Couldn&apos;t retrieve metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Không nhận siêu dữ liệu được</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="107"/>
         <source>Couldn&apos;t connect securely to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Không kết nối an toàn đến máy chủ được</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="189"/>
         <source>%1 currently running</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 đang chạy</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="189"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Trước khi chúng tôi tiếp tục được, bạn cần đóng %1.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="201"/>
@@ -209,7 +201,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Cảnh báo</translation>
     </message>
 </context>
 <context>
@@ -258,7 +250,7 @@
     <message>
         <location filename="../maintainwindow.cpp" line="35"/>
         <source>Modify %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Thay đổi %1</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="36"/>
@@ -268,12 +260,12 @@
     <message>
         <location filename="../maintainwindow.cpp" line="90"/>
         <source>%1 currently running</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 đang chạy</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="90"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Trước khi chúng tôi tiếp tục được, bạn cần đóng %1.</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="111"/>
