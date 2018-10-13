@@ -196,6 +196,14 @@ TRANSLATIONS += \
     translations/en_AU.ts \
     translations/en_NZ.ts
 
+qtPrepareTool(LUPDATE, lupdate)
+genlang.commands = "$$LUPDATE -no-obsolete -source-language en_US $$_PRO_FILE_"
+
+qtPrepareTool(LRELEASE, lrelease)
+rellang.commands = "$$LRELEASE -removeidentical $$_PRO_FILE_"
+QMAKE_EXTRA_TARGETS = genlang rellang
+PRE_TARGETDEPS = genlang rellang
+
 win32 {
     #CONFIG += embed_manifest_exe
     #QMAKE_LFLAGS_WINDOWS += /MANIFESTUAC:level=\'requireAdministrator\'
