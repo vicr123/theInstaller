@@ -299,7 +299,7 @@
           <item>
            <widget class="QLabel" name="licenseLabel">
             <property name="text">
-             <string>By installing Application Name, you're indicating agreement to the terms of the License.</string>
+             <string notr="true">By installing Application Name, you're indicating agreement to the terms of the License.</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>

@@ -56,11 +56,6 @@
 <context>
     <name>LicenseWidget</name>
     <message>
-        <location filename="../licensewidget.ui" line="159"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../licensewidget.ui" line="219"/>
         <source>License Name</source>
         <translation type="unfinished"></translation>
@@ -98,11 +93,6 @@
         <location filename="../mainwindow.ui" line="262"/>
         <source>Install Options</source>
         <translation>Tùy chọn cài đặt</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="302"/>
-        <source>By installing Application Name, you&apos;re indicating agreement to the terms of the License.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="385"/>
