@@ -7,7 +7,7 @@
         <location filename="../process/installworker.cpp" line="65"/>
         <location filename="../process/installworker.cpp" line="184"/>
         <source>Downloading %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsisiunčiama %1...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="88"/>
