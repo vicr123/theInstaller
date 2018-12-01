@@ -17,7 +17,7 @@
     <message>
         <location filename="../process/installworker.cpp" line="118"/>
         <source>Configuring %1...</source>
-        <translation>Đang cài đặt %1...</translation>
+        <translation>Đang cấu hình %1...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="192"/>
@@ -68,7 +68,7 @@
     <message>
         <location filename="../mainwindow.ui" line="143"/>
         <source>Cancel Installation</source>
-        <translation>Hủy cài đặt</translation>
+        <translation>Hủy việc cài đặt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="150"/>
@@ -134,17 +134,17 @@
     <message>
         <location filename="../mainwindow.ui" line="682"/>
         <source>Installation is complete.</source>
-        <translation>Cài đặt đã xong.</translation>
+        <translation>Việc cài đặt đã hoàn tất thành công.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="744"/>
         <source>Finish</source>
-        <translation>Xong</translation>
+        <translation>Kết thúc</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="799"/>
         <source>Installation failed.</source>
-        <translation>Cài đặt đã thất bại.</translation>
+        <translation>Việc cài đặt đã thất bại</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="824"/>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="148"/>
         <source>By installing %1, you&apos;re indicating agreement to the terms of the %2.</source>
-        <translation>Nếu bạn cài đặt %1, bạn sẽ đồng ý với các điều khoản của cái %2.</translation>
+        <translation>Khi bạn cài đặt %1, bạn sẽ đồng ý với các điều khoản của cái %2.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="158"/>
@@ -228,7 +228,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="244"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation>Trước khi chúng tôi tiếp tục được, bạn cần đóng %1.</translation>
+        <translation>Trước khi chúng tôi tiếp tục được, bạn sẽ cần đóng %1.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="256"/>
@@ -262,12 +262,12 @@
     <message>
         <location filename="../maintainwindow.ui" line="293"/>
         <source>Removal is complete.</source>
-        <translation>Việc gỡ cài đặt đã xong.</translation>
+        <translation>Việc gỡ cài đặt đã kết thúc thành công.</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="318"/>
         <source>Finish</source>
-        <translation>Xong</translation>
+        <translation>Kết thúc</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="373"/>
