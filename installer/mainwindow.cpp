@@ -214,7 +214,7 @@ void MainWindow::on_installButton_clicked()
     while (iterator.hasNext()) {
         iterator.next();
         QFileInfo executable = iterator.fileInfo();
-        if (executable.suffix() == "exe") {
+        if (executable.suffix() == "exe" && executable.baseName() != "uninstall") {
             executableNames.append(executable.filePath());
         }
     }
