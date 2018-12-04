@@ -26,7 +26,15 @@ int main(int argc, char *argv[])
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
     qDebug() << a.arguments();
-    if (a.arguments().contains("--install")) {
+    if (a.arguments().contains("--update-from-app")) {
+        //Install UI mode (triggered from update action inside app)
+
+        MainWindow w;
+        w.setAutoProgress(true);
+        w.show();
+
+        return a.exec();
+    } else if (a.arguments().contains("--install")) {
         //Installer mode
         InstallWorker worker;
         if (!worker.startWork()) return 1;
@@ -86,13 +94,13 @@ int main(int argc, char *argv[])
             box.exec();
             return 1;
         }
+    } else {
+        //Install UI mode
+        MainWindow w;
+        w.show();
+
+        return a.exec();
     }
-
-    //Install UI mode
-    MainWindow w;
-    w.show();
-
-    return a.exec();
 }
 
 QString calculateSize(quint64 size) {

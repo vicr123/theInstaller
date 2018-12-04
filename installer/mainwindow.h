@@ -38,6 +38,9 @@ class MainWindow : public QMainWindow
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
 
+    public slots:
+        void setAutoProgress(bool autoProgress);
+
     private slots:
         void on_installOptions_clicked();
 
@@ -79,6 +82,7 @@ class MainWindow : public QMainWindow
         QWinTaskbarButton* taskbarButton;
         QLocalSocket* sock = nullptr;
         bool installDone = false;
+        bool autoProgress = false;
         LicenseWidget* licenseWidget;
 
         QMap<QString, QString> licenses;

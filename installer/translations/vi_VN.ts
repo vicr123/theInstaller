@@ -211,32 +211,32 @@
         <translation>Khi bạn cài đặt %1, bạn sẽ đồng ý với các điều khoản của cái %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="158"/>
+        <location filename="../mainwindow.cpp" line="162"/>
         <source>Couldn&apos;t retrieve metadata</source>
         <translation>Không nhận siêu dữ liệu được</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="162"/>
+        <location filename="../mainwindow.cpp" line="166"/>
         <source>Couldn&apos;t connect securely to the server</source>
         <translation>Không kết nối an toàn đến máy chủ được</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>%1 currently running</source>
         <translation>%1 đang chạy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
         <translation>Trước khi chúng tôi tiếp tục được, bạn sẽ cần đóng %1.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="256"/>
+        <location filename="../mainwindow.cpp" line="260"/>
         <source>Getting ready to install %1...</source>
         <translation>Đang chuẩn bị cài đặt %1...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="296"/>
+        <location filename="../mainwindow.cpp" line="306"/>
         <source>Warning</source>
         <translation>Cảnh báo</translation>
     </message>

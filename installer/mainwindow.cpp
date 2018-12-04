@@ -152,7 +152,11 @@ void MainWindow::getInstallerMetadata() {
                 ui->licenseLabel->setVisible(false);
             }
 
-            ui->stack->setCurrentIndex(2);
+            if (autoProgress) {
+                ui->installButton->click();
+            } else {
+                ui->stack->setCurrentIndex(2);
+            }
         });
         connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), [=](QNetworkReply::NetworkError code) {
             ui->metadataErrorLabel->setText(tr("Couldn't retrieve metadata"));
@@ -288,7 +292,13 @@ void MainWindow::on_installButton_clicked()
                     installDone = true;
                     this->setWindowFlag(Qt::WindowCloseButtonHint, true);
                     this->show();
-                    ui->stack->setCurrentIndex(5);
+
+                    if (autoProgress) {
+                        ui->openCheckbox->setChecked(true);
+                        ui->finishButton->click();
+                    } else {
+                        ui->stack->setCurrentIndex(5);
+                    }
 
                     taskbarButton->progress()->setVisible(false);
                 } else if (parts.at(0) == "ALERT") {
@@ -439,4 +449,8 @@ void MainWindow::on_browseInstallPathButton_clicked()
 void MainWindow::on_licenseLabel_linkActivated(const QString &link)
 {
     licenseWidget->show(link, this->licenses.value(link));
+}
+
+void MainWindow::setAutoProgress(bool autoProgress) {
+    this->autoProgress = autoProgress;
 }

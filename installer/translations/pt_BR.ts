@@ -27,27 +27,35 @@
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="204"/>
         <source>%n days remaining</source>
-        <translation><numerusform>%n dia restante</numerusform>
-        <numerusform>%n dias restantes</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n dia restante</numerusform>
+            <numerusform>%n dias restantes</numerusform>
+        </translation>
+    </message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="206"/>
         <source>%n hours remaining</source>
-        <translation><numerusform>%n hora restante</numerusform>
-        <numerusform>%n horas restantes</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n hora restante</numerusform>
+            <numerusform>%n horas restantes</numerusform>
+        </translation>
+    </message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="208"/>
         <source>%n minutes remaining</source>
-        <translation><numerusform>%n minuto restante</numerusform>
-        <numerusform>%n minutos restantes</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n minuto restante</numerusform>
+            <numerusform>%n minutos restantes</numerusform>
+        </translation>
+    </message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="210"/>
         <source>%n seconds remaining</source>
-        <translation><numerusform>%n segundo restante</numerusform>
-        <numerusform>%n segundos restantes</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n segundo restante</numerusform>
+            <numerusform>%n segundos restantes</numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -207,32 +215,32 @@
         <translation>Instalando %1, você está concordando com os termos da %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="158"/>
+        <location filename="../mainwindow.cpp" line="162"/>
         <source>Couldn&apos;t retrieve metadata</source>
         <translation>Não pode receber metadata</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="162"/>
+        <location filename="../mainwindow.cpp" line="166"/>
         <source>Couldn&apos;t connect securely to the server</source>
         <translation>Não pode estabelecer uma conexão segura com o servidor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>%1 currently running</source>
         <translation>%1 rodando</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
         <translation>Antes de continuar, você precisará fechar %1.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="256"/>
+        <location filename="../mainwindow.cpp" line="260"/>
         <source>Getting ready to install %1...</source>
         <translation>Preparando para instalar %1…</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="296"/>
+        <location filename="../mainwindow.cpp" line="306"/>
         <source>Warning</source>
         <translation>Atenção</translation>
     </message>
