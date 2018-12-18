@@ -10,6 +10,13 @@
 #include <QMessageBox>
 #include <QDesktopWidget>
 
+FILE _iob[] = {*stdin, *stdout, *stderr};
+
+extern "C" FILE * __cdecl __iob_func(void)
+{
+    return _iob;
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

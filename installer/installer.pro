@@ -8,7 +8,7 @@ QT       += core gui network svg winextras
 CONFIG   += static
 
 INCLUDEPATH += "C:/Program Files (x86)/zlib/include"
-LIBS     += -L"C:/Program Files (x86)/zlib/lib" -lzlibstat
+LIBS     += -L"C:/Program Files (x86)/zlib/lib" -lzlibstat -llegacy_stdio_definitions
 DEFINES += QUAZIP_STATIC ZLIB_WINAPI
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
