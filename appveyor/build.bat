@@ -23,13 +23,13 @@ echo Prefix=.. >> %QTDIR%\bin\qt.conf
 GOTO buildversions
 
 :build
-echo *********************************************
+echo ***********************************************************
 echo  BUILDING %~1
-echo  URL: %~2
-echo *********************************************
+echo  URL:     %~2
+echo ***********************************************************
 if not exist "deploy" mkdir deploy
 set DEPLOY=%cd%\deploy
-echo %~2 > metadata.txt
+echo %~2 > installer\metadata.txt
 mkdir %~1
 pushd %~1
 qmake ..\theInstaller.pro "LIBS += -L\"%ZLIBDIR%\"" "INCLUDEPATH += \"%ZLIBINCLUDEDIR%\""
