@@ -6,11 +6,9 @@ if "%APPVEYOR_REPO_TAG_NAME%"=="continuous" (
 
 echo Grabbing required files
 curl -L http://downloads.sourceforge.net/project/theinstaller/Qt5.12.0-static.7z > Qt.7z
-curl -L https://sourceforge.net/projects/gnuwin32/files/zlib/1.2.3/zlib-1.2.3-lib.zip > zlib.zip
+curl -L http://downloads.sourceforge.net/project/theinstaller/zlib.7z > zlib.7z
 "/Program Files/7-zip/7z.exe" x Qt.7z -oQtStatic -r
-"/Program Files/7-zip/7z.exe" x zlib.zip -ozlib -r
-
-copy appveyor\zconf.h zlib\include
+"/Program Files/7-zip/7z.exe" x zlib.7z -ozlib -r
 
 set QTDIR=%cd%\QtStatic\Qt5.12.0-static
 set ZLIBINCLUDEDIR=%cd%\zlib\include
