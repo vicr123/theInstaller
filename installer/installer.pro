@@ -29,7 +29,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 #This will create an installer for theSlate. Change this URL to a different one to change what is installed.
 #Also change the branding files.
-DEFINES += INSTALLER_METADATA_URL=\\\"http://vicr123.com/theslate/theinstaller/installer.json\\\"
+
+if (!exists($$_PRO_FILE_PWD_/metadata.txt)) {
+    error(Metadata file not found. Create a metadata.txt file in the same directory as installer.pro containing the URL of a metadata file.)
+}
+
+METADATA_URL = "$$cat($$_PRO_FILE_PWD_/metadata.txt)"
+message(Configuring theInstaller for metadata URL $$METADATA_URL)
+DEFINES += INSTALLER_METADATA_URL=\\\"$$METADATA_URL\\\"
 
 SOURCES += \
         main.cpp \
@@ -214,4 +221,7 @@ win32 {
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    metadata.txt
 
