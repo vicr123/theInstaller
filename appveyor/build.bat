@@ -14,7 +14,7 @@ call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary
 
 REM Set Qt Paths
 echo [Paths] > %QTDIR%\bin\qt.conf
-echo Prefix = %QTDIR% >> %QTDIR%\bin\qt.conf
+echo Prefix=%QTDIR% >> %QTDIR%\bin\qt.conf
 
 GOTO buildversions
 
