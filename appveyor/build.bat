@@ -10,6 +10,7 @@ curl -L https://sourceforge.net/projects/gnuwin32/files/zlib/1.2.3/zlib-1.2.3-li
 "/Program Files/7-zip/7z.exe" x Qt.7z -oQtStatic -r
 "/Program Files/7-zip/7z.exe" x zlib.zip -ozlib -r
 
+copy appveyor\zconf.h zlib\include
 
 set QTDIR=%cd%\QtStatic\Qt5.12.0-static
 set ZLIBINCLUDEDIR=%cd%\zlib\include
