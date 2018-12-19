@@ -8,7 +8,7 @@ echo Grabbing Qt 5.12 (Static)
 curl -L http://downloads.sourceforge.net/project/theinstaller/Qt5.12.0-static.7z > Qt.7z
 "/Program Files/7-zip/7z.exe" x Qt.7z -oQtStatic -r
 
-set QTDIR=%cd$\QtStatic\Qt5.12.0-static
+set QTDIR=%cd%\QtStatic\Qt5.12.0-static
 set PATH=%PATH%;%QTDIR%\bin
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 GOTO buildversions
