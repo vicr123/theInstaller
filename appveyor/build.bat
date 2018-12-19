@@ -11,9 +11,17 @@ curl -L http://downloads.sourceforge.net/project/theinstaller/Qt5.12.0-static.7z
 set QTDIR=%cd%\QtStatic\Qt5.12.0-static
 set PATH=%PATH%;%QTDIR%\bin
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+
+REM Set Qt Paths
+echo [Paths] > %QTDIR%\bin\qt.conf
+echo Prefix = %QTDIR% >> %QTDIR%\bin\qt.conf
+
 GOTO buildversions
 
 :build
+echo *********************************************
+echo  BUILDING %~1
+echo *********************************************
 if not exist "deploy" mkdir deploy
 set DEPLOY=%cd%\deploy
 echo %~2 > metadata.txt
