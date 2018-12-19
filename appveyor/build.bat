@@ -25,6 +25,7 @@ GOTO buildversions
 :build
 echo *********************************************
 echo  BUILDING %~1
+echo  URL: %~2
 echo *********************************************
 if not exist "deploy" mkdir deploy
 set DEPLOY=%cd%\deploy

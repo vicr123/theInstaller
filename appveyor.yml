@@ -22,9 +22,9 @@ build_script:
 test: off
 
 artifacts:
-- path: deploy
+- path: deploy\theSlate.exe
   name: theSlate.exe
-- path: deploy
+- path: deploy\thePhoto.exe
   name: thePhoto.exe
   
 before_deploy:
