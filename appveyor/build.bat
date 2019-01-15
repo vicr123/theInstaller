@@ -30,6 +30,7 @@ echo ***********************************************************
 if not exist "deploy" mkdir deploy
 set DEPLOY=%cd%\deploy
 echo %~2 > installer\metadata.txt
+copy /y installer\backgrounds\%~2.svg installer\background.svg
 mkdir %~1
 pushd %~1
 qmake ..\theInstaller.pro "LIBS += -L\"%ZLIBDIR%\"" "INCLUDEPATH += \"%ZLIBINCLUDEDIR%\""

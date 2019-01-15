@@ -91,6 +91,10 @@ bool InstallWorker::startWork() {
     lastBytesReceived = 0;
     lastTimeUpdate = QDateTime::fromMSecsSinceEpoch(0);
     connect(reply, &QNetworkReply::finished, [=] {
+        if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() != 200) {
+            QApplication::exit(1);
+            return;
+        }
         packageFile.flush();
         packageFile.seek(0);
 
