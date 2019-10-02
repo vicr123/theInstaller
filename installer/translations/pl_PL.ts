@@ -7,197 +7,189 @@
         <location filename="../process/installworker.cpp" line="65"/>
         <location filename="../process/installworker.cpp" line="184"/>
         <source>Downloading %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa pobieranie %1...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="88"/>
         <source>Unpacking %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa rozpakowywanie %1...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="102"/>
         <source>Configuring %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa konfigurowanie %1...</translation>
     </message>
     <message>
         <location filename="../process/installworker.cpp" line="193"/>
         <source>%1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 z %2</translation>
     </message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="205"/>
         <source>%n days remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Pozostał %n dzień</numerusform>
+        <numerusform>Pozostały %n dni</numerusform>
+        <numerusform>Pozostało %n dni</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="207"/>
         <source>%n hours remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Pozostała %n godzina</numerusform>
+        <numerusform>Pozostały %n godziny</numerusform>
+        <numerusform>Pozostało %n godzin</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="209"/>
         <source>%n minutes remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Pozostała %n minuta</numerusform>
+        <numerusform>Pozostały %n minuty</numerusform>
+        <numerusform>Pozostało %n minut</numerusform>
+        </translation></message>
     <message numerus="yes">
         <location filename="../process/installworker.cpp" line="211"/>
         <source>%n seconds remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
+        <translation><numerusform>Pozostała %n sekunda</numerusform>
+        <numerusform>Pozostały %n sekundy</numerusform>
+        <numerusform>Pozostało %n sekund</numerusform>
+        </translation></message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="60"/>
         <source>Getting ready...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa przygotowywanie...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="108"/>
         <source>This shouldn&apos;t be happening...</source>
-        <translation type="unfinished"></translation>
+        <translation>To nie powinno się dziać...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
         <source>Cancel Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj instalację</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="150"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponów</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
         <location filename="../mainwindow.ui" line="481"/>
         <source>Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Zainstaluj teraz</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="262"/>
         <source>Install Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje instalacji</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="339"/>
         <source>Install To</source>
-        <translation type="unfinished"></translation>
+        <translation>Zainstaluj do</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="349"/>
         <source>Install for</source>
-        <translation type="unfinished"></translation>
+        <translation>Zainstaluj dla</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="356"/>
         <source>Stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Strumień</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <source>Everyone</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkich</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="407"/>
         <source>This user only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko tego użytkownika</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="438"/>
         <source>Stable</source>
-        <translation type="unfinished"></translation>
+        <translation>Stabilny</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="454"/>
         <source>Blueprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Blueprint</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="606"/>
         <source>Installation is complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalacja zakończona.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="668"/>
         <source>Finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="723"/>
         <source>Installation failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalacja nie powiodła się.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="748"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyjdź</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="755"/>
         <source>Try Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponów próbę</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="39"/>
         <source>Invalid metadata was received</source>
-        <translation type="unfinished"></translation>
+        <translation>Otrzymałem nieprawidłowe metadane</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="46"/>
         <source>Application name not in metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma nazwy aplikacji w metadanych</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="56"/>
         <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="57"/>
         <source>Install %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zainstaluj %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="65"/>
         <source>Couldn&apos;t retrieve metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie mogłem pobrać metadanych</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="69"/>
         <source>Couldn&apos;t connect securely to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie mogłem połączyć się bezpiecznie z serwerem</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="119"/>
         <source>Getting ready to install %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa przygotowywanie do instalacji %1...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="159"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostrzeżenie</translation>
     </message>
 </context>
 <context>
@@ -205,68 +197,68 @@
     <message>
         <location filename="../maintainwindow.ui" line="78"/>
         <source>Repair</source>
-        <translation type="unfinished"></translation>
+        <translation>Napraw</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="85"/>
         <location filename="../maintainwindow.ui" line="172"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Odinstaluj</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="165"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="293"/>
         <source>Removal is complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie zakończone.</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="318"/>
         <source>Finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="373"/>
         <source>Removal failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie nie powiodło się.</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="398"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyjdź</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="405"/>
         <source>Try Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponów próbę</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="35"/>
         <source>Modify %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmodyfikuj %1</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="36"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz odinstalować %1?</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="90"/>
         <source>%1 currently running</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 obecnie pracuje</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="90"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zanim kontynuujemy, musisz zamknąć %1.</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="111"/>
         <source>Getting ready to uninstall %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa przygotowywanie do odinstalowania %1...</translation>
     </message>
 </context>
 <context>
@@ -274,7 +266,7 @@
     <message>
         <location filename="../quazip/quazipfile.cpp" line="247"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd %1 API ZIP/UNZIP</translation>
     </message>
 </context>
 <context>
@@ -282,7 +274,7 @@
     <message>
         <location filename="../process/removeworker.cpp" line="57"/>
         <source>Removing %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwa usuwanie %1...</translation>
     </message>
 </context>
 </TS>
