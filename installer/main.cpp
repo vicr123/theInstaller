@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 
     QTranslator myappTranslator;
     myappTranslator.load(QLocale::system().name(), ":/translations/");
-    //myappTranslator.load("vi_VN", ":/translations/");
     a.installTranslator(&myappTranslator);
 
     qsrand(QDateTime::currentMSecsSinceEpoch());

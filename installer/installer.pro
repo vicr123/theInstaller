@@ -38,7 +38,9 @@ if (isEmpty(METADATA_URL)) {
     METADATA_URL = "$$cat($$_PRO_FILE_PWD_/metadata.txt)"
 }
 message(Configuring theInstaller for metadata URL $$METADATA_URL)
-DEFINES += INSTALLER_METADATA_URL=\\\"$$METADATA_URL\\\"
+DEFINES += INSTALLER_METADATA_URL=\\\"$$METADATA_URL\\\"\
+
+RC_FILE = icon.rc
 
 SOURCES += \
         main.cpp \
@@ -215,11 +217,6 @@ qtPrepareTool(LRELEASE, lrelease)
 rellang.commands = "$$LRELEASE -removeidentical $$_PRO_FILE_"
 QMAKE_EXTRA_TARGETS = genlang rellang
 PRE_TARGETDEPS = genlang rellang
-
-win32 {
-    #CONFIG += embed_manifest_exe
-    #QMAKE_LFLAGS_WINDOWS += /MANIFESTUAC:level=\'requireAdministrator\'
-}
 
 RESOURCES += \
     resources.qrc
