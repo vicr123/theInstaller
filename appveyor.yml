@@ -26,6 +26,8 @@ artifacts:
   name: theSlate.exe
 - path: deploy\thePhoto.exe
   name: thePhoto.exe
+- path: deploy\theBeat.exe
+  name: theBeat.exe
   
 before_deploy:
 - ps:
