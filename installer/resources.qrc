@@ -11,5 +11,10 @@
         <file>translations/en_US.qm</file>
         <file>licenses/gpl3.html</file>
         <file>icons/go-previous.svg</file>
+        <file>translations/de_DE.qm</file>
+        <file>translations/nl_NL.qm</file>
+        <file>translations/it_IT.qm</file>
+        <file>translations/pl_PL.qm</file>
+        <file>translations/sv_SE.qm</file>
     </qresource>
 </RCC>

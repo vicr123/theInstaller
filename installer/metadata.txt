@@ -1,1 +1,1 @@
-https://vicr123.com/thebeat/theinstaller/installer.json
+file:///C:/Users/victo/Documents/Website/MainSite/thebeat/theinstaller/installer.json

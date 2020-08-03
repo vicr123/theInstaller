@@ -4,28 +4,28 @@
 <context>
     <name>InstallWorker</name>
     <message>
-        <location filename="../process/installworker.cpp" line="78"/>
-        <location filename="../process/installworker.cpp" line="207"/>
+        <location filename="../process/installworker.cpp" line="88"/>
+        <location filename="../process/installworker.cpp" line="248"/>
         <source>Downloading %1...</source>
         <translation>%1 Downloaden...</translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="107"/>
+        <location filename="../process/installworker.cpp" line="117"/>
         <source>Unpacking %1...</source>
         <translation>%1 Uitpakken...</translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="124"/>
+        <location filename="../process/installworker.cpp" line="134"/>
         <source>Configuring %1...</source>
         <translation>%1 Instellen...</translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="216"/>
+        <location filename="../process/installworker.cpp" line="257"/>
         <source>%1 of %2</source>
         <translation>%1 van %2</translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="228"/>
+        <location filename="../process/installworker.cpp" line="269"/>
         <source>%n days remaining</source>
         <translation>
             <numerusform>%n dag resterend</numerusform>
@@ -33,7 +33,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="230"/>
+        <location filename="../process/installworker.cpp" line="271"/>
         <source>%n hours remaining</source>
         <translation>
             <numerusform>%n uur resterend</numerusform>
@@ -41,7 +41,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="232"/>
+        <location filename="../process/installworker.cpp" line="273"/>
         <source>%n minutes remaining</source>
         <translation>
             <numerusform>%n minuut resterend</numerusform>
@@ -49,7 +49,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="234"/>
+        <location filename="../process/installworker.cpp" line="275"/>
         <source>%n seconds remaining</source>
         <translation>
             <numerusform>%n seconde resterend</numerusform>

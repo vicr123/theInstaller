@@ -330,6 +330,10 @@ void MainWindow::on_installButton_clicked()
         args.append("\"--vendor " + metadata.value("vendor").toString() + "\"");
         args.append("\"--name " + metadata.value("name").toString() + "\"");
 
+        if (metadata.contains("clsid")) {
+            args.append("\"--clsid " + metadata.value("clsid").toString() + "\"");
+        }
+
         QString destdir = ui->installPathLineEdit->text();
         if (destdir.endsWith("\\")) {
             destdir.append("\\");

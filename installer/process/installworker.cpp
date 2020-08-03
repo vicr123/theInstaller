@@ -1,5 +1,15 @@
 #include "installworker.h"
 
+#include <unknwn.h>
+#include <winrt/base.h>
+#include <winrt/Windows.Foundation.h>
+#include <propkey.h>
+#include <propsys.h>
+#include <propvarutil.h>
+#include <shlobj.h>
+#include <objidl.h>
+
+
 extern QString calculateSize(quint64 size);
 
 InstallWorker::InstallWorker(QObject *parent) : QObject(parent)
@@ -8,7 +18,7 @@ InstallWorker::InstallWorker(QObject *parent) : QObject(parent)
 
 bool InstallWorker::startWork() {
     QLocalSocket* sock = new QLocalSocket();
-    QString vendor, name, url, destPath, executable;
+    QString vendor, name, url, destPath, executable, clsid;
     bool isStableStream = true, isGlobalInstall = true;
 
     QString previousToken;
@@ -26,10 +36,12 @@ bool InstallWorker::startWork() {
                 destPath = arg;
             } else if (previousToken == "--executable") {
                 executable = arg;
+            } else if (previousToken == "--clsid") {
+                clsid = arg;
             }
             previousToken = "";
         } else {
-            if (arg == "--socket" || arg == "--vendor" || arg == "--name" || arg == "--url" || arg == "--destdir" || arg == "--executable") {
+            if (arg == "--socket" || arg == "--vendor" || arg == "--name" || arg == "--url" || arg == "--destdir" || arg == "--executable" || arg == "--clsid") {
                 previousToken = arg;
             } else if (arg == "--blueprint") {
                 isStableStream = false;
@@ -135,8 +147,53 @@ bool InstallWorker::startWork() {
         if (QFile::exists(linkFile)) {
             QFile::remove(linkFile);
         }
-        QFile::link(executableFile.absoluteFilePath(), linkFile);
         QFile::copy(QApplication::applicationFilePath(), dest.absoluteFilePath("uninstall.exe"));
+
+        bool shouldUseQFileLink = false;
+        if (!clsid.isEmpty()) {
+            QString appUMID = QStringLiteral("%1.%2").arg(vendor.toLower()).arg(name.toLower());
+            QSettings* comServer;
+            if (isGlobalInstall) {
+                comServer = new QSettings(QStringLiteral("HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\CLSID\\%1\\LocalServer32").arg(clsid), QSettings::NativeFormat);
+            } else {
+                comServer = new QSettings(QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE\\Classes\\CLSID\\%1\\LocalServer32").arg(clsid), QSettings::NativeFormat);
+            }
+
+            comServer->setValue(".", "\"" + executableFile.absoluteFilePath() + "\" -ToastActivated");
+
+            comServer->deleteLater();
+
+            try {
+                auto link{ winrt::create_instance<IShellLink>(CLSID_ShellLink) };
+                winrt::check_hresult(link->SetPath(executableFile.absoluteFilePath().toStdWString().c_str()));
+
+                auto store = link.as<IPropertyStore>();
+                PROPVARIANT value;
+                winrt::check_hresult(::InitPropVariantFromString(appUMID.toStdWString().c_str(), &value));
+                winrt::check_hresult(store->SetValue(PKEY_AppUserModel_ID, value));
+                ::PropVariantClear(&value);
+
+                CLSID clsidVar;
+                winrt::check_hresult(::CLSIDFromString(clsid.toStdWString().c_str(), &clsidVar));
+                winrt::check_hresult(::InitPropVariantFromCLSID(clsidVar, &value));
+                winrt::check_hresult(store->SetValue(PKEY_AppUserModel_ToastActivatorCLSID, value));
+
+                auto file{ store.as<IPersistFile>() };
+                winrt::check_hresult(file->Save(linkFile.toStdWString().c_str(), TRUE));
+
+                ::PropVariantClear(&value);
+            } catch (...) {
+                sock->write(QString("DEBUG Error while creating link; falling back to QFile::link\n").toUtf8());
+
+                shouldUseQFileLink = true;
+            }
+        } else {
+            shouldUseQFileLink = true;
+        }
+
+        if (shouldUseQFileLink) {
+            QFile::link(executableFile.absoluteFilePath(), linkFile);
+        }
 
         QJsonObject dataRoot;
         dataRoot.insert("vendor", vendor);
@@ -146,6 +203,10 @@ bool InstallWorker::startWork() {
         dataRoot.insert("appurl", url);
         dataRoot.insert("stream", isStableStream);
         dataRoot.insert("registryUuid", name);
+
+        if (!clsid.isEmpty()) {
+            dataRoot.insert("clsid", clsid);
+        }
 
         QSettings* settings;
         if (isGlobalInstall) {
