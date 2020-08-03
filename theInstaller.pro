@@ -1,4 +1,10 @@
 TEMPLATE = subdirs
 
-SUBDIRS = \
-    installer
+applib {
+    SUBDIRS = \
+        libtheinstaller
+} else {
+    SUBDIRS = \
+        installer
+}
+
