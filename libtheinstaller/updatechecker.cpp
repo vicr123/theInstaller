@@ -147,7 +147,10 @@ QAction *UpdateChecker::checkForUpdatesAction()
     QAction* a = new QAction();
     UpdateChecker::instance()->d->checkForUpdateActions.append(a);
     a->setMenuRole(QAction::ApplicationSpecificRole);
-    connect(a, &QAction::triggered, UpdateChecker::instance(), &UpdateChecker::checkForUpdates);
+    connect(a, &QAction::triggered, UpdateChecker::instance(), [=] {
+        if (QApplication::keyboardModifiers() | Qt::AltModifier) UpdateChecker::instance()->d->state = UpdateCheckerPrivate::NewUpdateAvailable;
+        UpdateChecker::instance()->checkForUpdates();
+    });
     connect(a, &QAction::destroyed, UpdateChecker::instance(), [=] {
         UpdateChecker::instance()->d->checkForUpdateActions.removeOne(a);
     });
