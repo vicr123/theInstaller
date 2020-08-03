@@ -11,7 +11,7 @@ class UpdateChecker : public QObject
     public:
         ~UpdateChecker();
 
-        static void initialise(QUrl metadataUrl, QUrl updateDownloadUrl, int major, int minor, int build);
+        static void initialise(QUrl metadataUrl, QUrl updateDownloadUrl, int major, int minor, int build, int bp = 0);
         static UpdateChecker* instance();
 
         static bool updatesSupported();

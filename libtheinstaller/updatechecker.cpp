@@ -24,8 +24,10 @@ struct UpdateCheckerPrivate {
 
     State state = Idle;
 
-    int version[3];
-    int newUpdateVersion[3];
+    int version[4];
+    int newUpdateVersion[4];
+
+    bool isStableStream = true;
 
     QNetworkAccessManager mgr;
 };
@@ -33,6 +35,15 @@ struct UpdateCheckerPrivate {
 UpdateChecker::UpdateChecker(QObject *parent) : QObject(parent)
 {
     d = new UpdateCheckerPrivate();
+
+    QFile metadataFile(QApplication::applicationDirPath() + "/uninstall.json");
+    metadataFile.open(QFile::ReadOnly);
+    QJsonObject metadata = QJsonDocument::fromJson(metadataFile.readAll()).object();
+    metadataFile.close();
+
+    if (metadata.contains("stream")) {
+        d->isStableStream = metadata.value("stream").toBool();
+    }
 }
 
 QString UpdateChecker::versionString(const int params[])
@@ -45,13 +56,14 @@ UpdateChecker::~UpdateChecker()
     delete d;
 }
 
-void UpdateChecker::initialise(QUrl metadataUrl, QUrl updateDownloadUrl, int major, int minor, int build)
+void UpdateChecker::initialise(QUrl metadataUrl, QUrl updateDownloadUrl, int major, int minor, int build, int bp)
 {
     UpdateChecker::instance()->d->metadataUrl = metadataUrl;
     UpdateChecker::instance()->d->updateDownloadUrl = updateDownloadUrl;
     UpdateChecker::instance()->d->version[0] = major;
     UpdateChecker::instance()->d->version[1] = minor;
     UpdateChecker::instance()->d->version[2] = build;
+    UpdateChecker::instance()->d->version[3] = bp;
     UpdateChecker::instance()->checkForUpdates();
 }
 
@@ -107,23 +119,24 @@ void UpdateChecker::checkForUpdates()
             QJsonObject obj = doc.object();
             if (!obj.contains("version")) return;
 
-            QJsonObject versions = obj.value("version").toObject();
+            QJsonObject versions = d->isStableStream ? obj.value("version").toObject() : obj.value("bpVersion").toObject();
 
             int newVersion[] = {
                 versions.value("major").toInt(),
                 versions.value("minor").toInt(),
-                versions.value("bugfix").toInt()
+                versions.value("bugfix").toInt(),
+                versions.value("bp").toInt()
             };
 
             bool isNewVersion = false;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (d->version[i] < newVersion[i]) {
                     isNewVersion = true;
                 }
             }
 
             if (isNewVersion) {
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     d->newUpdateVersion[i] = newVersion[i];
                 }
                 d->state = UpdateCheckerPrivate::NewUpdateAvailable;
@@ -148,7 +161,7 @@ QAction *UpdateChecker::checkForUpdatesAction()
     UpdateChecker::instance()->d->checkForUpdateActions.append(a);
     a->setMenuRole(QAction::ApplicationSpecificRole);
     connect(a, &QAction::triggered, UpdateChecker::instance(), [=] {
-        if (QApplication::keyboardModifiers() | Qt::AltModifier) UpdateChecker::instance()->d->state = UpdateCheckerPrivate::NewUpdateAvailable;
+        if (QApplication::keyboardModifiers() & Qt::AltModifier) UpdateChecker::instance()->d->state = UpdateCheckerPrivate::NewUpdateAvailable;
         UpdateChecker::instance()->checkForUpdates();
     });
     connect(a, &QAction::destroyed, UpdateChecker::instance(), [=] {
