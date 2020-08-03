@@ -33,7 +33,7 @@ echo %~2 > installer\metadata.txt
 copy /y installer\backgrounds\%~1.svg installer\background.svg
 mkdir %~1
 pushd %~1
-qmake ..\theInstaller.pro "LIBS += -L\"%ZLIBDIR%\"" "INCLUDEPATH += \"%ZLIBINCLUDEDIR%\""
+qmake ..\theInstaller.pro "LIBS += -L\"%ZLIBDIR%\"" "INCLUDEPATH += \"%ZLIBINCLUDEDIR%\"" "CONFIG+=installer"
 nmake release
 copy installer\release\installer.exe %DEPLOY%\%~1.exe
 popd
