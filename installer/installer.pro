@@ -5,10 +5,10 @@
 #-------------------------------------------------
 
 QT       += core gui network svg winextras
-CONFIG   += static
+CONFIG   += static c++17
 
 INCLUDEPATH += "C:/Program Files (x86)/zlib/include"
-LIBS     += -L"C:/Program Files (x86)/zlib/lib" -lzlibstat -llegacy_stdio_definitions
+LIBS     += -L"C:/Program Files (x86)/zlib/lib" -lzlibstat -llegacy_stdio_definitions -lwindowsapp
 DEFINES += QUAZIP_STATIC ZLIB_WINAPI
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -208,7 +208,9 @@ TRANSLATIONS += \
     translations/en_US.ts \
     translations/en_GB.ts \
     translations/en_AU.ts \
-    translations/en_NZ.ts
+    translations/en_NZ.ts \
+    translations/de_DE.ts \
+    translations/nl_NL.ts
 
 qtPrepareTool(LUPDATE, lupdate)
 genlang.commands = "$$LUPDATE -no-obsolete -source-language en_US $$_PRO_FILE_"

@@ -74,6 +74,20 @@ bool RemoveWorker::startWork() {
     QDir dest(metadata.value("installPath").toString());
     dest.removeRecursively();
 
+    if (metadata.contains("clsid")) {
+        QSettings* comServer;
+        if (metadata.value("global").toBool()) {
+            comServer = new QSettings(QStringLiteral("HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\CLSID"), QSettings::NativeFormat);
+        } else {
+            comServer = new QSettings(QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE\\Classes\\CLSID"), QSettings::NativeFormat);
+        }
+
+        comServer->remove(metadata.value("clsid").toString());
+        comServer->sync();
+
+        comServer->deleteLater();
+    }
+
     //Remove registry entry
     QSettings* settings;
     if (metadata.value("global").toBool()) {

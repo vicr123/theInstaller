@@ -4,49 +4,49 @@
 <context>
     <name>InstallWorker</name>
     <message>
-        <location filename="../process/installworker.cpp" line="76"/>
-        <location filename="../process/installworker.cpp" line="187"/>
+        <location filename="../process/installworker.cpp" line="88"/>
+        <location filename="../process/installworker.cpp" line="248"/>
         <source>Downloading %1...</source>
         <translation>Đang tải xuống %1...</translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="105"/>
+        <location filename="../process/installworker.cpp" line="117"/>
         <source>Unpacking %1...</source>
         <translation>Đang giải nén %1...</translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="122"/>
+        <location filename="../process/installworker.cpp" line="134"/>
         <source>Configuring %1...</source>
         <translation>Đang cấu hình %1...</translation>
     </message>
     <message>
-        <location filename="../process/installworker.cpp" line="196"/>
+        <location filename="../process/installworker.cpp" line="257"/>
         <source>%1 of %2</source>
         <translation>%1 trén %2</translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="208"/>
+        <location filename="../process/installworker.cpp" line="269"/>
         <source>%n days remaining</source>
         <translation>
             <numerusform>Còn %n ngày</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="210"/>
+        <location filename="../process/installworker.cpp" line="271"/>
         <source>%n hours remaining</source>
         <translation>
             <numerusform>Còn %n tiếng</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="212"/>
+        <location filename="../process/installworker.cpp" line="273"/>
         <source>%n minutes remaining</source>
         <translation>
             <numerusform>Còn %n phút</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../process/installworker.cpp" line="214"/>
+        <location filename="../process/installworker.cpp" line="275"/>
         <source>%n seconds remaining</source>
         <translation>
             <numerusform>Còn %n giay</numerusform>
