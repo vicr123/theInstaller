@@ -133,7 +133,7 @@
     <message>
         <location filename="../mainwindow.ui" line="640"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="682"/>
@@ -183,36 +183,36 @@
     <message>
         <location filename="../mainwindow.cpp" line="108"/>
         <source>Update Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Jetzt aktualisieren</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="125"/>
         <location filename="../mainwindow.cpp" line="126"/>
         <source>GNU General Public License, version 3</source>
-        <translation type="unfinished"></translation>
+        <translation>GNU General Public License, Version 3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="130"/>
         <location filename="../mainwindow.cpp" line="131"/>
         <source>GNU General Public License, version 3, or later</source>
-        <translation type="unfinished"></translation>
+        <translation>GNU General Public License, Version 3, oder neuer</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="135"/>
         <location filename="../mainwindow.cpp" line="136"/>
         <source>GNU General Public License, version 2</source>
-        <translation type="unfinished"></translation>
+        <translation>GNU General Public License, Version 2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="140"/>
         <location filename="../mainwindow.cpp" line="141"/>
         <source>GNU General Public License, version 2, or later</source>
-        <translation type="unfinished"></translation>
+        <translation>GNU General Public License, Version 2, oder neuer</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="148"/>
         <source>By installing %1, you&apos;re indicating agreement to the terms of the %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Durch die Installation von %1, erklärst du dich mit den Lizenzbestimmungen der %2 einverstanden.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="162"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>%1 currently running</source>
-        <translation type="unfinished">%1 wird gerade ausgeführt</translation>
+        <translation>%1 wird gerade ausgeführt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation type="unfinished">Bevor wir fortfahren, müssen Sie %1 schließen.</translation>
+        <translation>Bevor wir fortfahren, müssen Sie %1 schließen.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="260"/>
