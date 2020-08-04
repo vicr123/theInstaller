@@ -9,6 +9,7 @@
 #include <QNetworkReply>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QPainter>
 
 struct UpdateCheckerPrivate {
     QUrl metadataUrl;
@@ -171,6 +172,21 @@ QAction *UpdateChecker::checkForUpdatesAction()
     UpdateChecker::instance()->updateAction(a);
 
     return a;
+}
+
+QPixmap UpdateChecker::updateAvailableIcon(QPixmap originalIcon)
+{
+    QPainter p(&originalIcon);
+    p.setRenderHint(QPainter::Antialiasing);
+
+    QSize circleSize = originalIcon.size() / 2;
+    QRect circleRect(QPoint(circleSize.width(), circleSize.height()), circleSize);
+
+    p.setPen(Qt::transparent);
+    p.setBrush(QColor(200, 0, 0));
+    p.drawEllipse(circleRect);
+
+    return originalIcon;
 }
 
 void UpdateChecker::updateActions()

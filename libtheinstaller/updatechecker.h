@@ -21,6 +21,8 @@ class UpdateChecker : public QObject
 
         static QAction* checkForUpdatesAction();
 
+        static QPixmap updateAvailableIcon(QPixmap originalIcon);
+
     signals:
         void closeAllWindows();
         void updateAvailable();
