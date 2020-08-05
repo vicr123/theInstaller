@@ -81,236 +81,311 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
-        <location filename="../mainwindow.ui" line="527"/>
+        <location filename="../mainwindow.ui" line="540"/>
         <source>Install Now</source>
         <translation>Nu Installeren</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="262"/>
         <source>Install Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Installatie-opties</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="385"/>
+        <location filename="../mainwindow.ui" line="449"/>
         <source>Install To</source>
-        <translation type="unfinished"></translation>
+        <translation>Installeer Naar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="395"/>
+        <location filename="../mainwindow.ui" line="503"/>
         <source>Install for</source>
-        <translation type="unfinished"></translation>
+        <translation>Installeer voor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="402"/>
+        <location filename="../mainwindow.ui" line="442"/>
         <source>Stream</source>
-        <translation type="unfinished"></translation>
+        <translation>Stroom</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="435"/>
+        <source>Browse...</source>
+        <translation>Bladeren...</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="477"/>
+        <source>Everyone</source>
+        <translation>Iedereen</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="493"/>
+        <source>This user only</source>
+        <translation>Alleen deze gebruiker</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="409"/>
-        <source>Browse...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="437"/>
-        <source>Everyone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="453"/>
-        <source>This user only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="484"/>
         <source>Stable</source>
-        <translation type="unfinished"></translation>
+        <translation>Stabiel</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="500"/>
+        <location filename="../mainwindow.ui" line="425"/>
         <source>Blueprint</source>
-        <translation type="unfinished"></translation>
+        <translation>Blauwdruk</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="640"/>
+        <location filename="../mainwindow.ui" line="516"/>
+        <source>INSTALL OPTIONS</source>
+        <translation>INSTALLATIE-OPTIES</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="653"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="682"/>
+        <location filename="../mainwindow.ui" line="695"/>
         <source>Installation is complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Installatie is klaar.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="744"/>
+        <location filename="../mainwindow.ui" line="757"/>
         <source>Finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="799"/>
+        <location filename="../mainwindow.ui" line="812"/>
         <source>Installation failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Installatie mislukt.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="824"/>
+        <location filename="../mainwindow.ui" line="837"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluiten</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="831"/>
+        <location filename="../mainwindow.ui" line="844"/>
         <source>Try Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Opnieuw Proberen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="58"/>
+        <location filename="../mainwindow.cpp" line="59"/>
         <source>Invalid metadata was received</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige metadata ontvangen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="65"/>
+        <location filename="../mainwindow.cpp" line="66"/>
         <source>Application name not in metadata</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="75"/>
-        <source>Open %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Applicatienaam niet in metadata</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="76"/>
+        <source>Open %1</source>
+        <translation>%1 Openen</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="77"/>
         <source>Install %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Installeren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="108"/>
+        <location filename="../mainwindow.cpp" line="112"/>
         <source>Update Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu Bijwerken</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="125"/>
-        <location filename="../mainwindow.cpp" line="126"/>
-        <source>GNU General Public License, version 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../mainwindow.cpp" line="129"/>
         <location filename="../mainwindow.cpp" line="130"/>
-        <location filename="../mainwindow.cpp" line="131"/>
-        <source>GNU General Public License, version 3, or later</source>
-        <translation type="unfinished"></translation>
+        <source>GNU General Public License, version 3</source>
+        <translation>GNU General Public License, versie 3</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="134"/>
         <location filename="../mainwindow.cpp" line="135"/>
-        <location filename="../mainwindow.cpp" line="136"/>
-        <source>GNU General Public License, version 2</source>
-        <translation type="unfinished"></translation>
+        <source>GNU General Public License, version 3, or later</source>
+        <translation>GNU General Public License, versie 3, of later</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="139"/>
         <location filename="../mainwindow.cpp" line="140"/>
-        <location filename="../mainwindow.cpp" line="141"/>
+        <source>GNU General Public License, version 2</source>
+        <translation>GNU General Public License, versie 2</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="145"/>
         <source>GNU General Public License, version 2, or later</source>
-        <translation type="unfinished"></translation>
+        <translation>GNU General Public License, versie 2, of later</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>By installing %1, you&apos;re indicating agreement to the terms of the %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Door %1 te installeren, ga je akkoord met de %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="162"/>
+        <location filename="../mainwindow.cpp" line="168"/>
         <source>Couldn&apos;t retrieve metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon de metadata niet ophalen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="166"/>
+        <location filename="../mainwindow.cpp" line="174"/>
         <source>Couldn&apos;t connect securely to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon niet veilig met de server verbinden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="259"/>
         <source>%1 currently running</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 is actief</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="259"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voordat we doorgaan, moet je %1 sluiten.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="260"/>
+        <location filename="../mainwindow.cpp" line="271"/>
         <source>Getting ready to install %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aan het klaarmaken om %1 te installeren...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="317"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Waarschuwing</translation>
     </message>
 </context>
 <context>
     <name>MaintainWindow</name>
     <message>
-        <location filename="../maintainwindow.ui" line="78"/>
+        <location filename="../maintainwindow.ui" line="75"/>
+        <location filename="../maintainwindow.cpp" line="288"/>
         <source>Repair</source>
-        <translation type="unfinished"></translation>
+        <translation>Repareren</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="85"/>
-        <location filename="../maintainwindow.ui" line="172"/>
+        <location filename="../maintainwindow.ui" line="82"/>
+        <source>Modify</source>
+        <translation>Wijzigen</translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.ui" line="89"/>
+        <location filename="../maintainwindow.ui" line="176"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijderen</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="165"/>
+        <location filename="../maintainwindow.ui" line="169"/>
+        <location filename="../maintainwindow.ui" line="520"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="293"/>
+        <location filename="../maintainwindow.ui" line="297"/>
         <source>Removal is complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijderen is klaar.</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="318"/>
+        <location filename="../maintainwindow.ui" line="322"/>
         <source>Finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaar</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="373"/>
+        <location filename="../maintainwindow.ui" line="377"/>
         <source>Removal failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijderen mislukt.</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="398"/>
+        <location filename="../maintainwindow.ui" line="402"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluiten</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.ui" line="405"/>
+        <location filename="../maintainwindow.ui" line="409"/>
         <source>Try Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Opnieuw Proberen</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.cpp" line="43"/>
+        <location filename="../maintainwindow.ui" line="484"/>
+        <source>MODIFY</source>
+        <translation>WIJZIGEN</translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.ui" line="491"/>
+        <source>What would you like to do?</source>
+        <translation>Wat wil je doen?</translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="47"/>
         <source>Modify %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Wijzigen</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.cpp" line="44"/>
+        <location filename="../maintainwindow.cpp" line="48"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Weet je zeker dat je %1 wil verwijderen?</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.cpp" line="98"/>
+        <location filename="../maintainwindow.cpp" line="225"/>
         <source>%1 currently running</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 is actief</translation>
     </message>
     <message>
-        <location filename="../maintainwindow.cpp" line="98"/>
+        <location filename="../maintainwindow.cpp" line="225"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
+        <translation>Voordat we doorgaan, moet je %1 sluiten.</translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="82"/>
+        <source>Getting ready to uninstall %1...</source>
+        <translation>Aan het klaarmaken om %1 te verwijderen...</translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="258"/>
+        <source>Change to Blueprint Stream</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../maintainwindow.cpp" line="119"/>
-        <source>Getting ready to uninstall %1...</source>
+        <location filename="../maintainwindow.cpp" line="259"/>
+        <source>Be the first to try out new features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="262"/>
+        <source>Change to Stable Stream</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="263"/>
+        <source>Return to a stable version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="272"/>
+        <source>Change Stream</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="273"/>
+        <source>To change streams, we&apos;ll need to download the latest update of %1.
+
+Make sure you&apos;re connected to the Internet before continuing.
+
+Change to the %2 stream?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="277"/>
+        <source>stable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="277"/>
+        <source>blueprint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../maintainwindow.cpp" line="289"/>
+        <source>To repair %1, we&apos;ll connect to the Internet and download the latest version.
+
+Make sure you&apos;re connected to the Internet before continuing.
+
+Start repairing %1?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

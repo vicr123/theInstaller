@@ -12,6 +12,11 @@ void FadeStackedWidget::setCurrentIndex(int index) {
     }
 }
 
+void FadeStackedWidget::setCurrentWidget(QWidget *widget)
+{
+    setCurrentIndex(this->indexOf(widget));
+}
+
 void FadeStackedWidget::doSetCurrentIndex(int index) {
     QWidget* currentWidget = widget(currentIndex());
     QWidget* nextWidget = widget(index);

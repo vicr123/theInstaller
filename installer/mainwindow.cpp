@@ -5,6 +5,7 @@
 #include <QDirIterator>
 #include <QFileDialog>
 #include <QJsonArray>
+#include <QRandomGenerator>
 
 extern float getDPIScaling();
 
@@ -44,7 +45,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::getInstallerMetadata() {
-    ui->stack->setCurrentIndex(0);
+    ui->stack->setCurrentWidget(ui->gettingReadyPage);
 
     QTimer::singleShot(1000, [=] {
         QNetworkRequest req(QUrl(INSTALLER_METADATA_URL));
@@ -56,14 +57,14 @@ void MainWindow::getInstallerMetadata() {
             QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
             if (!doc.isObject()) {
                 ui->metadataErrorLabel->setText(tr("Invalid metadata was received"));
-                ui->stack->setCurrentIndex(1);
+                ui->stack->setCurrentWidget(ui->prepareErrorPage);
                 return;
             }
 
             QJsonObject obj = doc.object();
             if (!obj.contains("name") || !obj.contains("vendor")) {
                 ui->metadataErrorLabel->setText(tr("Application name not in metadata"));
-                ui->stack->setCurrentIndex(1);
+                ui->stack->setCurrentWidget(ui->prepareErrorPage);
                 return;
             }
 
@@ -99,10 +100,13 @@ void MainWindow::getInstallerMetadata() {
                         ui->installButton->setIcon(QIcon());
                     }
 
-                    if (metadata.value("stream").toBool(true)) {
-                        ui->stableStream->setChecked(true);
-                    } else {
-                        ui->stableStream->setChecked(false);
+                    useStableStream = metadata.value("stream").toBool(true);
+
+                    //But if a different stream is specified, use that instead
+                    if (QApplication::arguments().contains("--stable")) {
+                        useStableStream = true;
+                    } else if (QApplication::arguments().contains("--blueprint")) {
+                        useStableStream = false;
                     }
 
                     ui->installButton->setText(tr("Update Now"));
@@ -155,16 +159,20 @@ void MainWindow::getInstallerMetadata() {
             if (autoProgress) {
                 ui->installButton->click();
             } else {
-                ui->stack->setCurrentIndex(2);
+                ui->stack->setCurrentWidget(ui->promptInstallPage);
             }
         });
-        connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), [=](QNetworkReply::NetworkError code) {
+        connect(reply, &QNetworkReply::errorOccurred, this, [=](QNetworkReply::NetworkError code) {
+            Q_UNUSED(code)
+
             ui->metadataErrorLabel->setText(tr("Couldn't retrieve metadata"));
-            ui->stack->setCurrentIndex(1);
+            ui->stack->setCurrentWidget(ui->prepareErrorPage);
         });
-        connect(reply, &QNetworkReply::sslErrors, [=](QList<QSslError> errors) {
+        connect(reply, &QNetworkReply::sslErrors, this, [=](QList<QSslError> errors) {
+            Q_UNUSED(errors)
+
             ui->metadataErrorLabel->setText(tr("Couldn't connect securely to the server"));
-            ui->stack->setCurrentIndex(1);
+            ui->stack->setCurrentWidget(ui->prepareErrorPage);
         });
     });
 }
@@ -181,13 +189,15 @@ void MainWindow::setInstallPath() {
 }
 
 void MainWindow::paintEvent(QPaintEvent *event) {
+    Q_UNUSED(event)
+
     QPainter p(this);
     p.drawPixmap(0, 0, backgroundImage);
 }
 
 void MainWindow::on_installOptions_clicked()
 {
-    ui->stack->setCurrentIndex(3);
+    ui->stack->setCurrentWidget(ui->installOptionsPage);
 }
 
 void MainWindow::on_cancelMetadataButton_clicked()
@@ -202,6 +212,7 @@ void MainWindow::on_retryMetadataButton_clicked()
 
 void MainWindow::on_installEveryone_toggled(bool checked)
 {
+    Q_UNUSED(checked)
     setInstallPath();
 }
 
@@ -256,12 +267,12 @@ void MainWindow::on_installButton_clicked()
     taskbarButton->progress()->setRange(0, 0);
     ui->cancelInstallButton->setVisible(true);
     ui->cancelInstallButton->setEnabled(true);
-    ui->stack->setCurrentIndex(4);
+    ui->stack->setCurrentWidget(ui->installProgressPage);
     ui->statusLabel->setText(tr("Getting ready to install %1...").arg(metadata.value("name").toString()));
 
     QLocalServer* socketServer = new QLocalServer();
 
-    QString serverNumber = QString::number(qrand());
+    QString serverNumber = QString::number(QRandomGenerator::global()->generate());
     if (QApplication::arguments().contains("--server-only")) {
         serverNumber = QApplication::arguments().at(QApplication::arguments().indexOf("--server-only") + 1);
     }
@@ -297,7 +308,7 @@ void MainWindow::on_installButton_clicked()
                         ui->openCheckbox->setChecked(true);
                         ui->finishButton->click();
                     } else {
-                        ui->stack->setCurrentIndex(5);
+                        ui->stack->setCurrentWidget(ui->installCompletePage);
                     }
 
                     taskbarButton->progress()->setVisible(false);
@@ -313,7 +324,7 @@ void MainWindow::on_installButton_clicked()
             if (!installDone) {
                 this->setWindowFlag(Qt::WindowCloseButtonHint, true);
                 this->show();
-                ui->stack->setCurrentIndex(6);
+                ui->stack->setCurrentWidget(ui->installFailurePage);
                 taskbarButton->progress()->stop();
             }
         });
@@ -340,7 +351,7 @@ void MainWindow::on_installButton_clicked()
         }
         args.append("\"--destdir \"\"" + destdir + "\"\"\"");
 
-        if (ui->stableStream->isChecked()) {
+        if (useStableStream) {
             args.append("\"--stable\"");
             args.append("\"--url " + metadata.value("stable").toObject().value("packageUrl").toString() + "\"");
             args.append("\"--executable " + metadata.value("stable").toObject().value("executableName").toString() + "\"");
@@ -369,18 +380,22 @@ void MainWindow::on_installButton_clicked()
         QProcess* proc = new QProcess();
         proc->setProcessChannelMode(QProcess::ForwardedChannels);
 
-        QString command = "powershell -EncodedCommand " + QByteArray::fromRawData((const char*) encodedCommand.utf16(), encodedCommand.size() * 2).toBase64();
-        qDebug() << "PowerShell Command: " + encodedCommand;
-        qDebug() << "Executing " + command;
-        proc->start(command);
+        QStringList rootPsArgs = {
+            "-EncodedCommand",
+            QByteArray::fromRawData((const char*) encodedCommand.utf16(), encodedCommand.size() * 2).toBase64()
+        };
+        proc->start("powershell", rootPsArgs);
         connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), [=](int exitCode, QProcess::ExitStatus exitStatus) {
+            Q_UNUSED(exitCode)
+            Q_UNUSED(exitStatus)
+
             this->setWindowFlag(Qt::WindowCloseButtonHint, true);
             this->show();
             if (socketServer->isListening()) {
                 socketServer->close();
                 socketServer->deleteLater();
 
-                ui->stack->setCurrentIndex(6);
+                ui->stack->setCurrentWidget(ui->installFailurePage);
                 taskbarButton->progress()->stop();
             }
             proc->deleteLater();
@@ -411,7 +426,7 @@ void MainWindow::on_finishButton_clicked()
             destdir.append("\\");
         }
         QString executable;
-        if (ui->stableStream->isChecked()) {
+        if (useStableStream) {
             executable = metadata.value("stable").toObject().value("executableName").toString();
         } else {
             executable = metadata.value("blueprint").toObject().value("executableName").toString();
@@ -419,14 +434,14 @@ void MainWindow::on_finishButton_clicked()
 
         QString start = "\"" + destdir + executable + "\"";
         start.replace("\\", "/");
-        qDebug() << "Starting " + start;
-        QProcess::startDetached(start);
+        QProcess::startDetached(start, QStringList());
     }
 
     this->close();
 }
 
 void MainWindow::showEvent(QShowEvent *event) {
+    Q_UNUSED(event)
     taskbarButton->setWindow(this->windowHandle());
     taskbarButton->progress()->setVisible(true);
 }
@@ -457,4 +472,18 @@ void MainWindow::on_licenseLabel_linkActivated(const QString &link)
 
 void MainWindow::setAutoProgress(bool autoProgress) {
     this->autoProgress = autoProgress;
+}
+
+void MainWindow::on_stableStream_toggled(bool checked)
+{
+    if (checked) {
+        useStableStream = true;
+    }
+}
+
+void MainWindow::on_blueprintStream_toggled(bool checked)
+{
+    if (checked) {
+        useStableStream = false;
+    }
 }

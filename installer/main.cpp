@@ -26,10 +26,9 @@ int main(int argc, char *argv[])
     a.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
-    myappTranslator.load(QLocale(), ":/translations/");
+//    myappTranslator.load(QLocale(), ":/translations/");
+    myappTranslator.load("nl_NL", ":/translations/");
     a.installTranslator(&myappTranslator);
-
-    qsrand(QDateTime::currentMSecsSinceEpoch());
 
     qDebug() << a.arguments();
     if (a.arguments().contains("--update-from-app")) {
@@ -67,7 +66,7 @@ int main(int argc, char *argv[])
             QFile::remove(tempInstallerPath);
         }
         if (QFile::copy(QApplication::applicationFilePath(), tempInstallerPath)) {
-            QProcess::startDetached(tempInstallerPath);
+            QProcess::startDetached(tempInstallerPath, QStringList());
             return 0;
         } else {
             QMessageBox box;
@@ -87,7 +86,7 @@ int main(int argc, char *argv[])
             QFile::remove(tempInstallerPath);
         }
         if (QFile::copy(QApplication::applicationFilePath(), tempInstallerPath)) {
-            QProcess::startDetached(tempInstallerPath, QStringList() << "--uninstallmetadata" << a.applicationDirPath() + "/uninstall.json");
+            QProcess::startDetached(tempInstallerPath, {"--uninstallmetadata", a.applicationDirPath() + "/uninstall.json", "--originalinstaller", QApplication::applicationFilePath()});
             return 0;
         } else {
             QMessageBox box;

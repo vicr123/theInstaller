@@ -10,20 +10,21 @@
 class FadeStackedWidget : public QStackedWidget
 {
     Q_OBJECT
-public:
-    explicit FadeStackedWidget(QWidget *parent = nullptr);
+    public:
+        explicit FadeStackedWidget(QWidget *parent = nullptr);
 
-signals:
+    signals:
 
-public slots:
-    void setCurrentIndex(int index);
+    public slots:
+        void setCurrentIndex(int index);
+        void setCurrentWidget(QWidget* widget);
 
-private slots:
-    void doSetCurrentIndex(int index);
+    private slots:
+        void doSetCurrentIndex(int index);
 
-private:
-    bool doingNewAnimation = false;
-    QVariantAnimation* anim;
+    private:
+        bool doingNewAnimation = false;
+        QVariantAnimation* anim;
 };
 
 #endif // FADESTACKEDWIDGET_H

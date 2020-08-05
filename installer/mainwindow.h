@@ -70,7 +70,11 @@ class MainWindow : public QMainWindow
 
         void on_licenseLabel_linkActivated(const QString &link);
 
-    private:
+        void on_stableStream_toggled(bool checked);
+
+        void on_blueprintStream_toggled(bool checked);
+
+private:
         Ui::MainWindow *ui;
 
         void paintEvent(QPaintEvent* event);
@@ -84,6 +88,7 @@ class MainWindow : public QMainWindow
         bool installDone = false;
         bool autoProgress = false;
         LicenseWidget* licenseWidget;
+        bool useStableStream = true;
 
         QMap<QString, QString> licenses;
 };

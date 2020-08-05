@@ -46,17 +46,30 @@ private slots:
 
     void on_retryInstallButton_clicked();
 
+    void on_cancelModifyButton_clicked();
+
+    void on_modifyButton_clicked();
+
+    void on_changeStreamButton_clicked();
+
+    void on_repairButton_clicked();
+
 private:
     Ui::MaintainWindow *ui;
 
     void paintEvent(QPaintEvent* event);
     void showEvent(QShowEvent *event);
 
+    bool ensureNotRunning();
+
     QPixmap backgroundImage;
     QWinTaskbarButton* taskbarButton;
     QJsonObject metadata;
     QString metadataFile;
+    QString originalInstaller;
     bool modifyDone = false;
+
+    bool newStreamIsStable = false;
 };
 
 #endif // MAINTAINWINDOW_H
