@@ -162,7 +162,7 @@ void MainWindow::getInstallerMetadata() {
                 ui->stack->setCurrentWidget(ui->promptInstallPage);
             }
         });
-        connect(reply, &QNetworkReply::errorOccurred, this, [=](QNetworkReply::NetworkError code) {
+        connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), this, [=](QNetworkReply::NetworkError code) {
             Q_UNUSED(code)
 
             ui->metadataErrorLabel->setText(tr("Couldn't retrieve metadata"));
