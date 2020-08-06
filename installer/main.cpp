@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
     a.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
-//    myappTranslator.load(QLocale(), ":/translations/");
-    myappTranslator.load("nl_NL", ":/translations/");
+    myappTranslator.load(QLocale(), ":/translations/");
     a.installTranslator(&myappTranslator);
 
     qDebug() << a.arguments();
