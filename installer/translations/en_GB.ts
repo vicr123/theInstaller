@@ -306,12 +306,12 @@
     <message>
         <location filename="../maintainwindow.cpp" line="98"/>
         <source>Before we continue, you&apos;ll need to close %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Before we continue, you&apos;ll need to close %1.</translation>
     </message>
     <message>
         <location filename="../maintainwindow.cpp" line="119"/>
         <source>Getting ready to uninstall %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Getting ready to uninstall %1...</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
     <message>
         <location filename="../quazip/quazipfile.cpp" line="247"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIP/UNZIP API error %1</translation>
     </message>
 </context>
 <context>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../process/removeworker.cpp" line="57"/>
         <source>Removing %1...</source>
-        <translation type="unfinished"></translation>
+        <translation>Removing %1...</translation>
     </message>
 </context>
 </TS>
