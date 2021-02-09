@@ -133,7 +133,7 @@
     <message>
         <location filename="../mainwindow.ui" line="516"/>
         <source>INSTALL OPTIONS</source>
-        <translation type="unfinished"></translation>
+        <translation>INSTALLATIONSOPTIONEN</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="653"/>
@@ -256,12 +256,12 @@
         <location filename="../maintainwindow.ui" line="75"/>
         <location filename="../maintainwindow.cpp" line="288"/>
         <source>Repair</source>
-        <translation type="unfinished"></translation>
+        <translation>Reparieren</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="82"/>
         <source>Modify</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifizieren</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="89"/>
@@ -303,7 +303,7 @@
     <message>
         <location filename="../maintainwindow.ui" line="484"/>
         <source>MODIFY</source>
-        <translation type="unfinished"></translation>
+        <translation>MODIFIZIEREN</translation>
     </message>
     <message>
         <location filename="../maintainwindow.ui" line="491"/>

@@ -40,6 +40,6 @@ popd
 EXIT /B
 
 :buildversions
-CALL :build theSlate http://vicr123.com/theslate/theinstaller/installer.json
-CALL :build thePhoto http://vicr123.com/thephoto/theinstaller/installer.json
-CALL :build theBeat http://vicr123.com/thebeat/theinstaller/installer.json
+CALL :build theSlate https://vicr123.com/theslate/theinstaller/installer.json
+CALL :build thePhoto https://vicr123.com/thephoto/theinstaller/installer.json
+CALL :build theBeat https://vicr123.com/thebeat/theinstaller/installer.json
